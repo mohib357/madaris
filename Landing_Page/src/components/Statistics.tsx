@@ -89,7 +89,7 @@ export default function Statistics({ statistics }: Props) {
   return (
     <section
       ref={sectionRef}
-      className="py-16 px-4 md:px-8 lg:px-16"
+      className="py-16 px-4 md:px-8 lg:px-16 islamic-pattern"
       style={{ background: "linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 60%, #1a6b9a 100%)" }}
       aria-label="প্রতিষ্ঠানের পরিসংখ্যান"
     >

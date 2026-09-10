@@ -288,10 +288,9 @@ export default function Navbar({ institutionName }: NavbarProps) {
       )}
 
       {/* Mobile bottom sticky nav */}
-      <div
-        className="fixed bottom-0 left-0 right-0 z-40 lg:hidden bg-white border-t-2 shadow-2xl no-print"
+      <nav
+        className="fixed bottom-0 left-0 right-0 z-40 lg:hidden bg-white border-t shadow-2xl no-print flex flex-row items-stretch"
         style={{ borderColor: "var(--color-border)" }}
-        role="navigation"
         aria-label="মোবাইল বটম নেভিগেশন"
       >
         {[
@@ -300,22 +299,31 @@ export default function Navbar({ institutionName }: NavbarProps) {
           { label: "ভর্তি", href: "#admission", icon: "🎓" },
           { label: "ফলাফল", href: "#result", icon: "📊" },
           { label: "যোগাযোগ", href: "#contact", icon: "📞" },
-        ].map((item) => (
-          <a
-            key={item.label}
-            href={item.href}
-            className="flex-1 flex flex-col items-center py-2.5 text-xs font-medium transition-all"
-            style={activeHash === item.href ? { color: "var(--color-primary)" } : { color: "var(--color-text-muted)" }}
-            onClick={() => handleNavClick(item.href)}
-          >
-            <span className="text-lg leading-none mb-0.5">{item.icon}</span>
-            {item.label}
-            {activeHash === item.href && (
-              <span className="w-1 h-1 rounded-full mt-0.5" style={{ background: "var(--color-primary)" }} />
-            )}
-          </a>
-        ))}
-      </div>
+        ].map((item) => {
+          const isActive = activeHash === item.href;
+          return (
+            <a
+              key={item.label}
+              href={item.href}
+              className="flex-1 flex flex-col items-center justify-center py-2 text-xs font-semibold transition-all min-w-0"
+              style={isActive
+                ? { color: "var(--color-primary)" }
+                : { color: "var(--color-text-muted)" }
+              }
+              onClick={() => handleNavClick(item.href)}
+            >
+              <span className="text-xl leading-none mb-0.5">{item.icon}</span>
+              <span className="truncate w-full text-center">{item.label}</span>
+              {isActive && (
+                <span
+                  className="w-4 h-0.5 rounded-full mt-0.5"
+                  style={{ background: "var(--color-primary)" }}
+                />
+              )}
+            </a>
+          );
+        })}
+      </nav>
     </header>
   );
 }

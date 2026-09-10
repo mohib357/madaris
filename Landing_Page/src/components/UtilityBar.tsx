@@ -23,8 +23,16 @@ export default function UtilityBar({ contact }: Props) {
       style={{ backgroundColor: "var(--color-primary-dark)" }}
     >
       <div className="container-custom flex items-center justify-between py-1.5 gap-4">
-        {/* Left — contact quick info */}
+        {/* Left — Islamic greeting + contact */}
         <div className="flex items-center gap-4">
+          {/* Islamic greeting */}
+          <span
+            className="font-amiri text-sm opacity-80 tracking-wide"
+            style={{ color: "var(--color-gold)" }}
+          >
+            السَّلَامُ عَلَيْكُمْ
+          </span>
+          <span className="opacity-30 text-xs">|</span>
           {contact.phone[0] && (
             <a
               href={`tel:${contact.phone[0]}`}

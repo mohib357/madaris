@@ -14,6 +14,18 @@ export default function Leadership({ leaders }: Props) {
       aria-label="নেতৃত্বের বাণী"
     >
       <div className="container-custom">
+        {/* Islamic banner */}
+        <div
+          className="text-center mb-8 py-4 rounded-2xl islamic-pattern-light border"
+          style={{ borderColor: "var(--color-primary-light)" }}
+        >
+          <p className="bismillah-box font-amiri text-2xl mb-1" style={{ color: "var(--color-primary)" }}>
+            وَتَعَاوَنُوا عَلَى الْبِرِّ وَالتَّقْوَىٰ
+          </p>
+          <p className="text-xs" style={{ color: "var(--color-text-muted)" }}>
+            সৎকর্ম ও তাকওয়ায় পরস্পর সাহায্য করো — সূরা মায়েদা: ২
+          </p>
+        </div>
         {/* Section header */}
         <div className="text-center mb-12">
           <span

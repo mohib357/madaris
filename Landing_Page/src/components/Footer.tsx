@@ -34,7 +34,7 @@ export default function Footer({ institution }: Props) {
 
       {/* CTA Banner */}
       <div
-        className="py-12 px-4"
+        className="py-12 px-4 islamic-pattern"
         style={{ background: "linear-gradient(135deg, var(--color-gold) 0%, #b7860c 100%)" }}
       >
         <div className="container-custom flex flex-col md:flex-row items-center justify-between gap-6">

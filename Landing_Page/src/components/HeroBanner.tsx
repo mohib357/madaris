@@ -38,6 +38,8 @@ export default function HeroBanner({ hero, institutionName }: Props) {
 
       {/* Multi-layer overlay for depth */}
       <div className="absolute inset-0" style={{ background: "linear-gradient(120deg, rgba(20,67,96,0.92) 0%, rgba(26,82,118,0.80) 50%, rgba(0,0,0,0.40) 100%)" }} />
+      {/* Islamic geometric pattern overlay */}
+      <div className="absolute inset-0 islamic-pattern opacity-100" />
       {/* Bottom fade */}
       <div className="absolute bottom-0 left-0 right-0 h-40" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.5), transparent)" }} />
 

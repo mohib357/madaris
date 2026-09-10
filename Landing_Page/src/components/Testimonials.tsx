@@ -60,7 +60,7 @@ export default function Testimonials({ testimonials }: Props) {
   return (
     <section
       id="testimonials"
-      className="section-padding"
+      className="section-padding islamic-pattern"
       style={{ background: "linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 100%)" }}
       aria-label="অভিভাবক ও শিক্ষার্থীদের মতামত"
     >

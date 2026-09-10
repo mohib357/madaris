@@ -36,18 +36,37 @@ export default function Donation({ purposes }: Props) {
   return (
     <section
       id="donation"
-      className="section-padding bg-white"
+      className="section-padding islamic-pattern"
+      style={{
+        background: "linear-gradient(135deg, var(--color-primary-dark) 0%, #1a3a5c 50%, var(--color-primary) 100%)",
+      }}
       aria-label="দান ও অনুদান"
     >
       <div className="container-custom">
-        <span className="tag mx-auto block w-fit mb-3">অনুদান</span>
-        <h2 className="section-heading">
-          আপনার সহায়তায় গড়ে উঠুক একটি সুন্দর ভবিষ্যৎ
-        </h2>
-        <p className="section-subheading max-w-xl mx-auto">
-          আপনার ক্ষুদ্র অবদান একটি শিশুর জীবন পরিবর্তন করতে পারে।
-          বিনিয়োগ করুন আগামীর প্রজন্মে।
-        </p>
+        <div className="text-center mb-10">
+          {/* Islamic calligraphy */}
+          <p className="bismillah-box font-amiri text-2xl mb-3 opacity-80">
+            وَأَنفِقُوا فِي سَبِيلِ اللَّهِ
+          </p>
+          <p className="text-white/60 text-xs mb-5">আল্লাহর পথে ব্যয় করুন — সূরা বাকারা</p>
+
+          <span
+            className="inline-block bg-white/15 text-white text-xs font-bold px-4 py-1.5 rounded-full mb-4 border border-white/20"
+          >
+            অনুদান ও লিল্লাহ
+          </span>
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold text-white mb-3">
+            আপনার সহায়তায় গড়ে উঠুক একটি সুন্দর ভবিষ্যৎ
+          </h2>
+          <div className="flex items-center justify-center gap-2 mb-3">
+            <div className="h-0.5 w-10 rounded bg-white/30" />
+            <span style={{ color: "var(--color-gold)" }} aria-hidden="true">✦</span>
+            <div className="h-0.5 w-10 rounded bg-white/30" />
+          </div>
+          <p className="text-white/70 text-sm md:text-base max-w-xl mx-auto">
+            আপনার ক্ষুদ্র অবদান একটি শিশুর জীবন পরিবর্তন করতে পারে।
+          </p>
+        </div>
 
         {/* Purpose cards */}
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10">

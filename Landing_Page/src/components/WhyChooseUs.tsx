@@ -9,7 +9,7 @@ export default function WhyChooseUs({ points, institutionName }: Props) {
   return (
     <section
       id="why-us"
-      className="section-padding"
+      className="section-padding islamic-pattern"
       style={{ background: "linear-gradient(135deg, var(--color-primary-dark) 0%, var(--color-primary) 100%)" }}
       aria-label="কেন আমাদের প্রতিষ্ঠান"
     >

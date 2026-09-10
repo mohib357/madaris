@@ -57,7 +57,7 @@ export default function AdmissionSection() {
   return (
     <section
       id="admission"
-      className="section-padding"
+      className="section-padding islamic-pattern"
       style={{
         background:
           "linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%)",
@@ -67,11 +67,17 @@ export default function AdmissionSection() {
       <div className="container-custom">
         {/* Heading */}
         <div className="text-center mb-12">
-          <span className="inline-block bg-white/15 text-white text-xs font-semibold px-3 py-1.5 rounded-full mb-3">
-            ভর্তি
+          {/* Islamic Ayah */}
+          <p className="bismillah-box font-amiri text-xl mb-2 opacity-80">
+            اقْرَأْ بِاسْمِ رَبِّكَ الَّذِي خَلَقَ
+          </p>
+          <p className="text-white/50 text-xs mb-5">পড়ো তোমার রবের নামে — সূরা আলাক</p>
+
+          <span className="inline-block bg-white/15 text-white text-xs font-bold px-4 py-1.5 rounded-full mb-3 border border-white/20">
+            ভর্তি ২০২৬
           </span>
           <h2 className="text-2xl md:text-3xl font-extrabold text-white mb-2">
-            🎓 ২০২৬ শিক্ষাবর্ষে ভর্তি চলছে
+            ২০২৬ শিক্ষাবর্ষে ভর্তি চলছে
           </h2>
           <p className="text-white/80 text-sm md:text-base max-w-xl mx-auto">
             আপনার সন্তানের সুন্দর ভবিষ্যতের যাত্রা শুরু হোক আজ থেকেই।
