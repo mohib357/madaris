@@ -13,13 +13,12 @@ export default function HeroBanner({ hero, institutionName }: Props) {
   const headingRef = useRef<HTMLHeadingElement>(null);
 
   useEffect(() => {
-    // Stagger-animate children on mount
     const el = headingRef.current?.closest(".hero-content");
     if (!el) return;
     const children = el.querySelectorAll(".hero-animate");
     children.forEach((child, i) => {
-      (child as HTMLElement).style.animationDelay = `${i * 0.15}s`;
-      (child as HTMLElement).classList.add("animate-slide-up");
+      (child as HTMLElement).style.animationDelay = `${i * 0.18}s`;
+      (child as HTMLElement).style.animationFillMode = "forwards";
     });
   }, []);
 
@@ -31,61 +30,86 @@ export default function HeroBanner({ hero, institutionName }: Props) {
     >
       {/* Background Image */}
       <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat scale-105"
         style={{ backgroundImage: `url(${hero.backgroundImage})` }}
         role="img"
         aria-label={`${institutionName} ক্যাম্পাস`}
       />
 
-      {/* Gradient overlay */}
-      <div
-        className="absolute inset-0"
-        style={{
-          background:
-            "linear-gradient(135deg, rgba(0,0,0,0.72) 0%, rgba(0,0,0,0.45) 60%, rgba(0,0,0,0.2) 100%)",
-        }}
-      />
+      {/* Multi-layer overlay for depth */}
+      <div className="absolute inset-0" style={{ background: "linear-gradient(120deg, rgba(20,67,96,0.92) 0%, rgba(26,82,118,0.80) 50%, rgba(0,0,0,0.40) 100%)" }} />
+      {/* Bottom fade */}
+      <div className="absolute bottom-0 left-0 right-0 h-40" style={{ background: "linear-gradient(to top, rgba(0,0,0,0.5), transparent)" }} />
+
+      {/* Decorative circles */}
+      <div className="absolute top-16 right-8 w-64 h-64 rounded-full opacity-10 blur-3xl" style={{ backgroundColor: "var(--color-gold)" }} />
+      <div className="absolute bottom-24 right-24 w-32 h-32 rounded-full opacity-10 blur-2xl bg-white" />
 
       {/* Content */}
-      <div className="relative z-10 container-custom py-20 pb-28 md:pb-20">
+      <div className="relative z-10 container-custom py-20 pb-32 md:pb-24">
         <div className="hero-content max-w-2xl">
-          {/* Badge */}
-          <span
-            className="hero-animate opacity-0 inline-flex items-center gap-2 text-xs font-semibold px-3 py-1.5 rounded-full mb-5 border border-white/30 text-white/90 backdrop-blur-sm"
-            style={{ backgroundColor: "rgba(255,255,255,0.12)" }}
+
+          {/* Arabic calligraphy */}
+          <p
+            className="hero-animate arabic-text text-white/70 text-xl mb-4 tracking-wide"
+            style={{ animationName: "fadeInUp" }}
           >
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+            بِسْمِ اللَّهِ الرَّحْمَنِ الرَّحِيم
+          </p>
+
+          {/* Live badge */}
+          <span
+            className="hero-animate inline-flex items-center gap-2 text-xs font-bold px-4 py-2 rounded-full mb-6 border"
+            style={{
+              backgroundColor: "rgba(212,160,23,0.18)",
+              borderColor: "rgba(212,160,23,0.5)",
+              color: "#fde68a",
+              animationName: "fadeInUp",
+            }}
+          >
+            <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
             {hero.subtitle}
           </span>
 
           {/* Heading */}
           <h1
             ref={headingRef}
-            className="hero-animate opacity-0 text-3xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-4"
+            className="hero-animate text-3xl md:text-5xl lg:text-6xl font-extrabold text-white leading-tight mb-5"
+            style={{ animationName: "fadeInUp", textShadow: "0 2px 16px rgba(0,0,0,0.3)" }}
           >
             {hero.heading}
           </h1>
 
+          {/* Divider */}
+          <div className="hero-animate flex items-center gap-3 mb-5" style={{ animationName: "fadeInUp" }}>
+            <div className="h-0.5 w-12 rounded" style={{ backgroundColor: "var(--color-gold)" }} />
+            <div className="w-2 h-2 rounded-full bg-white/60" />
+            <div className="h-0.5 w-6 rounded" style={{ backgroundColor: "var(--color-gold)" }} />
+          </div>
+
           {/* Description */}
-          <p className="hero-animate opacity-0 text-white/80 text-base md:text-lg leading-relaxed mb-8 max-w-xl">
+          <p
+            className="hero-animate text-white/85 text-base md:text-lg leading-relaxed mb-8 max-w-xl"
+            style={{ animationName: "fadeInUp" }}
+          >
             {hero.description}
           </p>
 
           {/* CTA Buttons */}
-          <div className="hero-animate opacity-0 flex flex-wrap gap-3">
+          <div className="hero-animate flex flex-wrap gap-3 mb-10" style={{ animationName: "fadeInUp" }}>
             {hero.ctaButtons.map((btn) => (
               <a
                 key={btn.label}
                 href={btn.href}
                 className={clsx(
-                  "px-6 py-3 rounded-lg font-semibold text-sm transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 shadow-md",
+                  "px-7 py-3.5 rounded-xl font-bold text-sm transition-all duration-200 hover:-translate-y-0.5 active:translate-y-0 shadow-lg",
                   btn.variant === "primary"
-                    ? "text-white shadow-lg"
-                    : "border-2 border-white/80 text-white hover:bg-white/10 backdrop-blur-sm"
+                    ? "text-white hover:opacity-90"
+                    : "border-2 border-white/70 text-white hover:bg-white/15 backdrop-blur-sm"
                 )}
                 style={
                   btn.variant === "primary"
-                    ? { backgroundColor: "var(--color-primary)" }
+                    ? { background: "linear-gradient(135deg, var(--color-gold) 0%, #b7860c 100%)", boxShadow: "0 4px 20px rgba(212,160,23,0.4)" }
                     : undefined
                 }
               >
@@ -94,16 +118,19 @@ export default function HeroBanner({ hero, institutionName }: Props) {
             ))}
           </div>
 
-          {/* Quick stats ribbon */}
-          <div className="hero-animate opacity-0 mt-12 flex flex-wrap gap-6">
+          {/* Quick stats */}
+          <div
+            className="hero-animate flex flex-wrap gap-1 sm:gap-0 sm:divide-x divide-white/20"
+            style={{ animationName: "fadeInUp" }}
+          >
             {[
-              { icon: "🎓", text: "১,২৫০+ শিক্ষার্থী" },
-              { icon: "📅", text: "২৫+ বছরের ঐতিহ্য" },
-              { icon: "✅", text: "৯৮% পাসের হার" },
+              { icon: "🎓", value: "১,২৫০+", label: "শিক্ষার্থী" },
+              { icon: "📅", value: "২৫+", label: "বছরের ঐতিহ্য" },
+              { icon: "✅", value: "৯৮%", label: "পাসের হার" },
             ].map((item) => (
-              <div key={item.text} className="flex items-center gap-2 text-white/80 text-sm">
-                <span>{item.icon}</span>
-                <span>{item.text}</span>
+              <div key={item.label} className="flex flex-col items-start sm:px-6 first:pl-0 last:pr-0 py-1">
+                <span className="text-white font-extrabold text-xl">{item.value}</span>
+                <span className="text-white/60 text-xs">{item.label}</span>
               </div>
             ))}
           </div>
@@ -111,17 +138,9 @@ export default function HeroBanner({ hero, institutionName }: Props) {
       </div>
 
       {/* Wave divider */}
-      <div className="absolute bottom-0 left-0 right-0 overflow-hidden leading-none">
-        <svg
-          viewBox="0 0 1440 56"
-          xmlns="http://www.w3.org/2000/svg"
-          preserveAspectRatio="none"
-          className="w-full h-10 md:h-14"
-        >
-          <path
-            d="M0,32 C360,56 1080,0 1440,32 L1440,56 L0,56 Z"
-            fill="#ffffff"
-          />
+      <div className="absolute bottom-0 left-0 right-0 overflow-hidden leading-none pointer-events-none">
+        <svg viewBox="0 0 1440 64" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" className="w-full h-12 md:h-16">
+          <path d="M0,40 C240,64 480,16 720,40 C960,64 1200,20 1440,40 L1440,64 L0,64 Z" fill="#f4f6f9" />
         </svg>
       </div>
     </section>

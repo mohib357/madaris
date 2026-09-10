@@ -1,6 +1,5 @@
 import Image from "next/image";
 import type { Leader } from "@/types/institution";
-import { Quote } from "lucide-react";
 
 interface Props {
   leaders: Leader[];
@@ -11,56 +10,84 @@ export default function Leadership({ leaders }: Props) {
     <section
       id="leadership"
       className="section-padding"
-      style={{ backgroundColor: "var(--color-primary-light)" }}
+      style={{ background: "linear-gradient(135deg, #f0f7ff 0%, #e8f4fd 100%)" }}
       aria-label="নেতৃত্বের বাণী"
     >
       <div className="container-custom">
-        <span className="tag mx-auto block w-fit mb-3">নেতৃত্ব</span>
-        <h2 className="section-heading">অধ্যক্ষ ও সভাপতির বাণী</h2>
-        <p className="section-subheading">
-          আমাদের প্রতিষ্ঠানের অগ্রযাত্রায় তাদের দৃষ্টিভঙ্গি ও প্রতিশ্রুতি
-        </p>
+        {/* Section header */}
+        <div className="text-center mb-12">
+          <span
+            className="inline-block text-xs font-bold px-4 py-1.5 rounded-full mb-4 border"
+            style={{ backgroundColor: "var(--color-primary-light)", color: "var(--color-primary)", borderColor: "var(--color-primary-light)" }}
+          >
+            নেতৃত্ব
+          </span>
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-extrabold mb-3" style={{ color: "var(--color-primary)" }}>
+            অধ্যক্ষ ও সভাপতির বাণী
+          </h2>
+          <div className="flex items-center justify-center gap-2 mb-3">
+            <div className="h-0.5 w-10 rounded" style={{ backgroundColor: "var(--color-gold)" }} />
+            <div className="w-2 h-2 rounded-full" style={{ backgroundColor: "var(--color-primary)" }} />
+            <div className="h-0.5 w-10 rounded" style={{ backgroundColor: "var(--color-gold)" }} />
+          </div>
+          <p className="text-sm md:text-base" style={{ color: "var(--color-text-muted)" }}>
+            আমাদের প্রতিষ্ঠানের অগ্রযাত্রায় তাদের দৃষ্টিভঙ্গি ও প্রতিশ্রুতি
+          </p>
+        </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-          {leaders.map((leader) => (
+          {leaders.map((leader, idx) => (
             <div
               key={leader.name}
-              className="card p-8 flex flex-col gap-6 relative overflow-hidden"
+              className="relative bg-white rounded-3xl shadow-lg overflow-hidden border border-slate-100 flex flex-col"
               aria-label={`${leader.designation} ${leader.name}-এর বাণী`}
             >
-              {/* Decorative quote icon */}
-              <Quote
-                size={64}
-                className="absolute top-4 right-4 opacity-5"
-                style={{ color: "var(--color-primary)" }}
-                aria-hidden="true"
+              {/* Top color bar */}
+              <div
+                className="h-1.5 w-full"
+                style={{
+                  background: idx % 2 === 0
+                    ? "linear-gradient(90deg, var(--color-primary), var(--color-gold))"
+                    : "linear-gradient(90deg, var(--color-gold), var(--color-primary))",
+                }}
               />
 
-              {/* Quote text */}
-              <div className="relative">
-                <span
-                  className="text-4xl font-serif leading-none opacity-30"
+              <div className="p-8 flex flex-col gap-6 flex-1">
+                {/* Large decorative quote */}
+                <div
+                  className="text-8xl font-serif leading-none opacity-10 -mt-4 -ml-2 select-none"
                   style={{ color: "var(--color-primary)" }}
                   aria-hidden="true"
                 >
                   "
-                </span>
-                <p className="text-slate-600 leading-relaxed text-base italic mt-1">
+                </div>
+
+                {/* Quote text */}
+                <p
+                  className="-mt-10 leading-relaxed text-base italic"
+                  style={{ color: "var(--color-text)" }}
+                >
                   {leader.message}
                 </p>
-                <span
-                  className="text-4xl font-serif leading-none opacity-30 float-right -mt-4"
+
+                {/* End quote */}
+                <div
+                  className="text-4xl font-serif leading-none opacity-10 text-right select-none"
                   style={{ color: "var(--color-primary)" }}
                   aria-hidden="true"
                 >
                   "
-                </span>
+                </div>
               </div>
 
               {/* Leader info */}
-              <div className="flex items-center gap-4 pt-4 border-t border-slate-100">
-                <div className="relative w-16 h-16 rounded-full overflow-hidden shrink-0 ring-2 ring-offset-2"
-                  style={{ "--tw-ring-color": "var(--color-primary)" } as React.CSSProperties}
+              <div
+                className="flex items-center gap-4 px-8 py-5 border-t"
+                style={{ borderColor: "var(--color-border)", background: "var(--color-section-alt)" }}
+              >
+                <div
+                  className="relative w-16 h-16 rounded-2xl overflow-hidden shrink-0 shadow-md border-2"
+                  style={{ borderColor: "var(--color-primary-light)" }}
                 >
                   <Image
                     src={leader.photo}
@@ -71,13 +98,19 @@ export default function Leadership({ leaders }: Props) {
                   />
                 </div>
                 <div>
-                  <p className="font-bold text-slate-800">{leader.name}</p>
-                  <p
-                    className="text-sm font-medium"
-                    style={{ color: "var(--color-primary)" }}
-                  >
+                  <p className="font-bold text-base" style={{ color: "var(--color-text)" }}>
+                    {leader.name}
+                  </p>
+                  <p className="text-sm font-semibold mt-0.5" style={{ color: "var(--color-primary)" }}>
                     {leader.designation}
                   </p>
+                </div>
+                {/* Seal icon */}
+                <div
+                  className="ml-auto w-10 h-10 rounded-full flex items-center justify-center text-lg opacity-30"
+                  style={{ backgroundColor: "var(--color-primary-light)" }}
+                >
+                  ✦
                 </div>
               </div>
             </div>

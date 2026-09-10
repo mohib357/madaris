@@ -5,24 +5,27 @@
 @tailwind utilities;
 
 /* =====================================================
-   Design Tokens — Dynamic Theme Variables
-   Override these per-institution from ThemeProvider
+   Design Tokens
    ===================================================== */
 :root {
-  --color-primary: #1a6b3c;
-  --color-primary-dark: #14532d;
-  --color-primary-light: #d1fae5;
+  --color-primary: #1a5276;
+  --color-primary-dark: #154360;
+  --color-primary-light: #d6eaf8;
   --color-primary-foreground: #ffffff;
+  --color-accent: #c0392b;
+  --color-accent-light: #fadbd8;
+  --color-gold: #d4a017;
+  --color-gold-light: #fef9e7;
 
   /* Neutral palette */
-  --color-bg: #f8fafc;
+  --color-bg: #f4f6f9;
   --color-surface: #ffffff;
-  --color-border: #e2e8f0;
-  --color-text: #1e293b;
-  --color-text-muted: #64748b;
+  --color-border: #dde3ec;
+  --color-text: #1c2a3a;
+  --color-text-muted: #5d6d7e;
 
   /* Section alternating bg */
-  --color-section-alt: #f0fdf4;
+  --color-section-alt: #eaf2fb;
 }
 
 /* =====================================================
@@ -35,13 +38,16 @@
   }
 
   body {
-    @apply bg-white text-slate-800 antialiased;
+    @apply antialiased;
+    background-color: var(--color-bg);
+    color: var(--color-text);
     font-family: 'Noto Sans Bengali', sans-serif;
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: 'Noto Sans Bengali', sans-serif;
     @apply font-bold leading-snug;
+    color: var(--color-text);
   }
 
   .arabic-text {
@@ -55,22 +61,49 @@
    ===================================================== */
 @layer utilities {
   .section-padding {
-    @apply py-16 px-4 md:px-8 lg:px-16;
+    @apply py-20 px-4 md:px-8 lg:px-16;
   }
 
   .section-heading {
-    @apply text-2xl md:text-3xl font-bold text-center mb-2;
+    @apply text-2xl md:text-3xl lg:text-4xl font-bold text-center mb-3;
     color: var(--color-primary);
   }
 
   .section-subheading {
-    @apply text-slate-500 text-center mb-10 text-sm md:text-base;
+    @apply text-center mb-12 text-sm md:text-base;
+    color: var(--color-text-muted);
   }
 
   .container-custom {
     @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
 
+  /* Decorative heading underline */
+  .section-title-wrapper {
+    @apply flex flex-col items-center mb-12;
+  }
+
+  .section-title-wrapper .section-heading {
+    @apply mb-3;
+  }
+
+  .section-divider {
+    @apply flex items-center gap-2 mb-4;
+  }
+
+  .section-divider::before,
+  .section-divider::after {
+    content: '';
+    @apply block h-0.5 w-12 rounded-full;
+    background-color: var(--color-gold);
+  }
+
+  .section-divider-dot {
+    @apply w-2 h-2 rounded-full;
+    background-color: var(--color-primary);
+  }
+
+  /* Buttons */
   .btn-primary {
     @apply inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold text-sm transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0;
     background-color: var(--color-primary);
@@ -79,6 +112,22 @@
 
   .btn-primary:hover {
     background-color: var(--color-primary-dark);
+  }
+
+  .btn-accent {
+    @apply inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold text-sm transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0;
+    background-color: var(--color-accent);
+    color: #ffffff;
+  }
+
+  .btn-accent:hover {
+    background-color: #a93226;
+  }
+
+  .btn-gold {
+    @apply inline-flex items-center gap-2 px-6 py-3 rounded-lg font-semibold text-sm transition-all duration-200 shadow-md hover:shadow-lg hover:-translate-y-0.5 active:translate-y-0;
+    background-color: var(--color-gold);
+    color: #ffffff;
   }
 
   .btn-outline {
@@ -105,14 +154,55 @@
     color: var(--color-primary-foreground);
   }
 
+  /* Cards */
   .card {
-    @apply bg-white rounded-2xl shadow-sm border border-slate-100 transition-all duration-300 hover:shadow-md;
+    @apply bg-white rounded-2xl shadow-sm border transition-all duration-300 hover:shadow-lg;
+    border-color: var(--color-border);
+  }
+
+  .card-hover {
+    @apply hover:-translate-y-1;
   }
 
   .tag {
-    @apply inline-block text-xs font-medium px-2.5 py-0.5 rounded-full;
+    @apply inline-block text-xs font-semibold px-3 py-1 rounded-full;
     background-color: var(--color-primary-light);
     color: var(--color-primary-dark);
+  }
+
+  .tag-gold {
+    @apply inline-block text-xs font-semibold px-3 py-1 rounded-full;
+    background-color: var(--color-gold-light);
+    color: #92600a;
+  }
+
+  /* Section backgrounds */
+  .bg-section {
+    background-color: var(--color-bg);
+  }
+
+  .bg-section-alt {
+    background-color: var(--color-section-alt);
+  }
+
+  .bg-section-dark {
+    background-color: var(--color-primary);
+    color: #ffffff;
+  }
+
+  /* Icon circle */
+  .icon-circle {
+    @apply flex items-center justify-center rounded-full text-2xl;
+    background-color: var(--color-primary-light);
+    color: var(--color-primary);
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-gold) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
   }
 }
 
@@ -139,7 +229,7 @@
 }
 
 /* =====================================================
-   Scroll Reveal — add via IntersectionObserver
+   Scroll Reveal
    ===================================================== */
 .reveal {
   opacity: 0;
@@ -153,10 +243,10 @@
 }
 
 /* =====================================================
-   Sticky Header Shadow
+   Sticky Header
    ===================================================== */
 .navbar-scrolled {
-  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.08);
+  box-shadow: 0 2px 24px rgba(26, 82, 118, 0.12);
 }
 
 /* =====================================================
@@ -170,20 +260,49 @@
 }
 
 /* =====================================================
-   Print Styles
+   Hero animations
    ===================================================== */
-@media print {
-  .no-print { display: none !important; }
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(32px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInLeft {
+  from { opacity: 0; transform: translateX(-32px); }
+  to   { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-8px); }
+}
+
+@keyframes shimmer {
+  0%   { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+
+.hero-animate {
+  animation: fadeInUp 0.7s ease forwards;
+  opacity: 0;
 }
 
 /* =====================================================
-   Download Button Hover
+   Download Button
    ===================================================== */
 .download-btn {
   background-color: var(--color-primary-light);
   color: var(--color-primary);
+  @apply transition-all duration-200;
 }
 .download-btn:hover {
   background-color: var(--color-primary);
-  color: var(--color-primary-foreground);
+  color: #ffffff;
+}
+
+/* =====================================================
+   Print Styles
+   ===================================================== */
+@media print {
+  .no-print { display: none !important; }
 }

@@ -16,9 +16,9 @@ export const mockInstitution: InstitutionConfig = {
   establishedYear: "১৯৯৮",
 
   theme: {
-    primaryColor: "#1a6b3c",
-    primaryDark: "#14532d",
-    primaryLight: "#d1fae5",
+    primaryColor: "#1a5276",
+    primaryDark: "#154360",
+    primaryLight: "#d6eaf8",
     primaryForeground: "#ffffff",
   },
 
