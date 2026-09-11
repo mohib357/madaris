@@ -60,12 +60,37 @@ const config: Config = {
           "0%": { backgroundPosition: "-200% 0" },
           "100%": { backgroundPosition: "200% 0" },
         },
+        "scroll-rtl": {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
+        "scroll-ltr": {
+          "0%": { transform: "translateX(-50%)" },
+          "100%": { transform: "translateX(0)" },
+        },
+        fadeSlideIn: {
+          from: { opacity: "0", transform: "translateY(16px)" },
+          to:   { opacity: "1", transform: "translateY(0)" },
+        },
+        chatBounce: {
+          "0%, 100%": { transform: "scale(1)" },
+          "50%":       { transform: "scale(1.08)" },
+        },
+        "pulse-ring": {
+          "0%":   { transform: "scale(1)",   opacity: "0.6" },
+          "100%": { transform: "scale(1.7)", opacity: "0"   },
+        },
       },
       animation: {
         float: "float 4s ease-in-out infinite",
         "slide-up": "slide-up 0.6s ease-out forwards",
         ticker: "ticker 30s linear infinite",
         shimmer: "shimmer 2s infinite",
+        "scroll-rtl": "scroll-rtl 32s linear infinite",
+        "scroll-ltr": "scroll-ltr 32s linear infinite",
+        "chat-bounce": "chatBounce 3s ease-in-out infinite",
+        "pulse-ring": "pulse-ring 2s ease-out infinite",
+        "fade-slide-in": "fadeSlideIn 0.4s ease-out forwards",
       },
       boxShadow: {
         card: "0 2px 20px rgba(0,0,0,0.08)",

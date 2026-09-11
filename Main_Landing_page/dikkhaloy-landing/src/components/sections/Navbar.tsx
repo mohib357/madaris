@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import { Menu, X, ChevronDown, Sparkles } from "lucide-react";
+import { Menu, X, ChevronDown, Sparkles, LogIn } from "lucide-react";
 
 const navItems = [
   {
@@ -100,12 +100,38 @@ export default function Navbar() {
 
         {/* Right CTAs */}
         <div className="hidden lg:flex items-center gap-3">
+          {/* ── Premium Login Button ── */}
           <a
             href="/login"
-            className="text-sm font-medium text-gray-600 hover:text-blue-600 px-3 py-2 rounded-lg hover:bg-gray-50 transition-all"
+            className="
+              group relative inline-flex items-center gap-2
+              px-4 py-2 rounded-xl text-sm font-semibold
+              bg-gradient-to-br from-slate-700 via-slate-800 to-slate-900
+              text-white
+              shadow-[0_2px_12px_rgba(15,23,42,0.35)]
+              hover:shadow-[0_4px_20px_rgba(15,23,42,0.50)]
+              hover:-translate-y-0.5
+              active:translate-y-0
+              transition-all duration-200
+              border border-white/10
+              overflow-hidden
+            "
+            aria-label="Login to dashboard"
           >
-            Login
+            {/* shimmer overlay */}
+            <span
+              className="
+                absolute inset-0 -skew-x-12
+                bg-gradient-to-r from-transparent via-white/10 to-transparent
+                translate-x-[-200%] group-hover:translate-x-[200%]
+                transition-transform duration-700
+              "
+              aria-hidden="true"
+            />
+            <LogIn size={14} className="relative z-10 text-blue-300 group-hover:text-white transition-colors" />
+            <span className="relative z-10 tracking-wide">Login</span>
           </a>
+
           <a
             href="#trial"
             className="btn-primary text-sm py-2.5 px-5"
@@ -156,10 +182,26 @@ export default function Navbar() {
               </div>
             ))}
             <div className="pt-4 border-t border-gray-100 flex flex-col gap-3">
-              <a href="/login" className="btn-ghost w-full justify-center text-sm">
+              {/* Premium Login mobile */}
+              <a
+                href="/login"
+                className="
+                  inline-flex items-center justify-center gap-2 w-full
+                  px-4 py-2.5 rounded-xl text-sm font-semibold
+                  bg-gradient-to-br from-slate-700 to-slate-900
+                  text-white shadow-md
+                  border border-white/10
+                "
+                onClick={() => setMobileOpen(false)}
+              >
+                <LogIn size={15} className="text-blue-300" />
                 Login
               </a>
-              <a href="#trial" className="btn-primary w-full justify-center text-sm" onClick={() => setMobileOpen(false)}>
+              <a
+                href="#trial"
+                className="btn-primary w-full justify-center text-sm"
+                onClick={() => setMobileOpen(false)}
+              >
                 <Sparkles size={15} />
                 বিনামূল্যে শুরু করুন
               </a>

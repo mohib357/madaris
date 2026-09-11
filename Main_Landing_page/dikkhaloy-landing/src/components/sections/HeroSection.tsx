@@ -4,10 +4,42 @@ import { useState, useEffect } from "react";
 import { Play, ArrowRight, CheckCircle, TrendingUp, Users, BookOpen, Globe } from "lucide-react";
 
 const floatingCards = [
-  { icon: CheckCircle, label: "Online Admission", color: "text-green-500", bg: "bg-green-50" },
-  { icon: TrendingUp, label: "Automated Result", color: "text-blue-500", bg: "bg-blue-50" },
-  { icon: Users, label: "Guardian Portal", color: "text-purple-500", bg: "bg-purple-50" },
-  { icon: Globe, label: "Own Website", color: "text-orange-500", bg: "bg-orange-50" },
+  {
+    icon: CheckCircle,
+    label: "Online Admission",
+    sublabel: "সম্পূর্ণ ডিজিটাল",
+    gradient: "from-emerald-500 to-green-600",
+    glow: "shadow-[0_4px_24px_rgba(16,185,129,0.45)]",
+    iconBg: "bg-white/25",
+    badge: "নতুন",
+  },
+  {
+    icon: TrendingUp,
+    label: "Automated Result",
+    sublabel: "এক ক্লিকে GPA",
+    gradient: "from-blue-500 to-indigo-600",
+    glow: "shadow-[0_4px_24px_rgba(59,130,246,0.45)]",
+    iconBg: "bg-white/25",
+    badge: null,
+  },
+  {
+    icon: Users,
+    label: "Guardian Portal",
+    sublabel: "রিয়েল-টাইম আপডেট",
+    gradient: "from-violet-500 to-purple-700",
+    glow: "shadow-[0_4px_24px_rgba(139,92,246,0.45)]",
+    iconBg: "bg-white/25",
+    badge: "Live",
+  },
+  {
+    icon: Globe,
+    label: "Own Website",
+    sublabel: "Custom Domain",
+    gradient: "from-orange-500 to-rose-500",
+    glow: "shadow-[0_4px_24px_rgba(249,115,22,0.45)]",
+    iconBg: "bg-white/25",
+    badge: null,
+  },
 ];
 
 const sidebarItems = [
@@ -128,6 +160,7 @@ export default function HeroSection() {
     <section className="relative min-h-[calc(100vh-100px)] bg-gradient-to-br from-blue-950 via-blue-900 to-indigo-900 overflow-hidden flex items-center">
       {/* Background elements */}
       <div className="absolute inset-0 geo-pattern opacity-30" />
+      <div className="absolute inset-0 islamic-star-pattern opacity-60" />
       <div className="absolute top-20 right-10 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl" />
       <div className="absolute bottom-10 left-10 w-72 h-72 bg-indigo-500/10 rounded-full blur-3xl" />
 
@@ -185,15 +218,37 @@ export default function HeroSection() {
               কোনো ক্রেডিট কার্ড লাগবে না · বিনামূল্যে শুরু করুন · যেকোনো সময় বাতিল করুন
             </p>
 
-            {/* Feature badges */}
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+            {/* Feature badge cards — premium deep look */}
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
               {floatingCards.map((card) => (
                 <div
                   key={card.label}
-                  className="bg-white/10 backdrop-blur-sm border border-white/10 rounded-xl p-3 flex flex-col items-center gap-1.5 hover:bg-white/15 transition-all"
+                  className={`
+                    relative bg-gradient-to-br ${card.gradient}
+                    ${card.glow}
+                    backdrop-blur-sm border border-white/20
+                    rounded-2xl p-3.5
+                    flex flex-col items-center gap-2
+                    hover:scale-105 hover:-translate-y-1
+                    transition-all duration-300 cursor-default
+                    overflow-hidden
+                  `}
                 >
-                  <card.icon size={18} className={card.color.replace("text-", "text-")} />
-                  <span className="text-white text-[11px] font-medium text-center leading-tight">{card.label}</span>
+                  {/* subtle inner glow */}
+                  <div className="absolute inset-0 bg-white/5 rounded-2xl" />
+                  {/* top-right badge */}
+                  {card.badge && (
+                    <span className="absolute top-2 right-2 text-[8px] font-bold bg-white/25 text-white px-1.5 py-0.5 rounded-full uppercase tracking-wide">
+                      {card.badge}
+                    </span>
+                  )}
+                  <div className={`relative z-10 w-9 h-9 ${card.iconBg} rounded-xl flex items-center justify-center`}>
+                    <card.icon size={18} className="text-white drop-shadow" />
+                  </div>
+                  <div className="relative z-10 text-center">
+                    <span className="text-white text-[11px] font-semibold leading-tight block">{card.label}</span>
+                    <span className="text-white/70 text-[9px] leading-tight block mt-0.5">{card.sublabel}</span>
+                  </div>
                 </div>
               ))}
             </div>

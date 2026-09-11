@@ -24,6 +24,7 @@ import EnterpriseCTA from "@/components/sections/EnterpriseCTA";
 import FAQSection from "@/components/sections/FAQSection";
 import FinalCTA from "@/components/sections/FinalCTA";
 import Footer from "@/components/sections/Footer";
+import FloatingChat from "@/components/FloatingChat";
 
 export default function HomePage() {
   return (
@@ -105,6 +106,9 @@ export default function HomePage() {
 
       {/* 26 — Footer */}
       <Footer />
+
+      {/* Floating Live Chat */}
+      <FloatingChat />
 
       {/* Mobile sticky CTA */}
       <div className="fixed bottom-0 left-0 right-0 z-40 lg:hidden bg-white border-t border-gray-200 p-3 flex gap-3 shadow-2xl">

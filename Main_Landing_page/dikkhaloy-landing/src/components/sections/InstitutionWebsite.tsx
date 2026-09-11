@@ -1,29 +1,151 @@
 "use client";
 
-import { Globe, Palette, FileText, Image, GraduationCap, Phone, DollarSign, Search, ArrowRight, ExternalLink } from "lucide-react";
+import { useState } from "react";
+import {
+  Globe, Palette, FileText, Image, GraduationCap, Phone,
+  DollarSign, Search, ArrowRight, ExternalLink, CheckCircle,
+} from "lucide-react";
 
 const websiteFeatures = [
-  { icon: Globe, label: "Custom Domain" },
-  { icon: Palette, label: "Custom Theme" },
-  { icon: FileText, label: "Notice Board" },
-  { icon: GraduationCap, label: "Admission Form" },
-  { icon: Image, label: "Gallery" },
-  { icon: FileText, label: "Result View" },
-  { icon: DollarSign, label: "Donation" },
-  { icon: Phone, label: "Contact Page" },
-  { icon: Search, label: "SEO Ready" },
+  { icon: Globe,          label: "Custom Domain" },
+  { icon: Palette,        label: "Custom Theme" },
+  { icon: FileText,       label: "Notice Board" },
+  { icon: GraduationCap,  label: "Admission Form" },
+  { icon: Image,          label: "Gallery" },
+  { icon: FileText,       label: "Result View" },
+  { icon: DollarSign,     label: "Donation" },
+  { icon: Phone,          label: "Contact Page" },
+  { icon: Search,         label: "SEO Ready" },
 ];
 
 const tenants = [
-  { sub: "dhanmondi-model", label: "Dhanmondi Model School", color: "bg-blue-500" },
-  { sub: "jamia-islahiya", label: "Jamia Islamia Islahiya", color: "bg-green-600" },
-  { sub: "dhaka-cadet", label: "Dhaka Cadet Academy", color: "bg-purple-600" },
+  { sub: "dhanmondi-model", label: "Dhanmondi Model School",   color: "bg-blue-600",   domain: "dhanmondischool.edu.bd" },
+  { sub: "jamia-islahiya",  label: "Jamia Islamia Islahiya",   color: "bg-green-700",  domain: "jamia-islahiya.dikkhaloy.com" },
+  { sub: "dhaka-cadet",     label: "Dhaka Cadet Academy",      color: "bg-purple-600", domain: "dhakacadet.edu.bd" },
 ];
 
-export default function InstitutionWebsite() {
+/** Browser mockup — সাবডোমেইন ভার্সন */
+function SubdomainPreview() {
   return (
-    <section id="website" className="section-pad bg-gray-50 relative">
+    <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+      <div className="bg-gray-100 px-4 py-2.5 flex items-center gap-2 border-b border-gray-200">
+        <div className="flex gap-1.5">
+          <div className="w-3 h-3 rounded-full bg-red-400" />
+          <div className="w-3 h-3 rounded-full bg-yellow-400" />
+          <div className="w-3 h-3 rounded-full bg-green-400" />
+        </div>
+        <div className="flex-1 bg-white rounded-md px-3 py-1 text-xs text-gray-500 border border-gray-200 ml-2 flex items-center gap-1">
+          <span className="text-green-600">🔒</span>
+          <span className="font-medium text-gray-600">jamia-islahiya</span>
+          <span className="text-gray-400">.dikkhaloy.com</span>
+        </div>
+      </div>
+      <div className="bg-gradient-to-br from-green-700 to-green-900 p-5 text-white">
+        <div className="flex items-center gap-2 mb-3">
+          <div className="w-8 h-8 bg-white/20 rounded-lg" />
+          <div>
+            <div className="font-bold text-sm">জামিয়া ইসলামিয়া ইসলাহিয়া</div>
+            <div className="text-green-300 text-[10px]">প্রতিষ্ঠিত ১৯৭৮</div>
+          </div>
+        </div>
+        <div className="bg-white/10 rounded-xl p-3 mb-3">
+          <div className="text-xs font-medium mb-2">নোটিশ বোর্ড</div>
+          <div className="space-y-1">
+            {["বার্ষিক পরীক্ষার ফলাফল প্রকাশিত", "অনলাইন ভর্তি শুরু হয়েছে"].map((n) => (
+              <div key={n} className="text-[10px] text-green-200 flex items-center gap-1">
+                <div className="w-1 h-1 bg-green-400 rounded-full" />
+                {n}
+              </div>
+            ))}
+          </div>
+        </div>
+        <div className="grid grid-cols-3 gap-2">
+          {["ভর্তি", "রেজাল্ট", "যোগাযোগ"].map((b) => (
+            <div key={b} className="bg-white/20 rounded-lg py-1.5 text-center text-[10px] font-medium">{b}</div>
+          ))}
+        </div>
+      </div>
+      <div className="p-3 bg-gray-50 flex items-center justify-between">
+        <span className="text-[10px] text-gray-400">Powered by Dikkhaloy</span>
+        <a href="#themes" className="text-[10px] text-blue-600 flex items-center gap-1 font-medium">
+          Theme দেখুন <ExternalLink size={10} />
+        </a>
+      </div>
+    </div>
+  );
+}
+
+/** Browser mockup — কাস্টম ডোমেইন ভার্সন */
+function CustomDomainPreview() {
+  return (
+    <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
+      {/* browser chrome */}
+      <div className="bg-gray-800 px-4 py-2.5 flex items-center gap-2">
+        <div className="flex gap-1.5">
+          <div className="w-3 h-3 rounded-full bg-red-400" />
+          <div className="w-3 h-3 rounded-full bg-yellow-400" />
+          <div className="w-3 h-3 rounded-full bg-green-400" />
+        </div>
+        {/* Address bar — shows custom domain */}
+        <div className="flex-1 bg-gray-700 rounded-md px-3 py-1 text-xs ml-2 flex items-center gap-1.5">
+          <span className="text-green-400">🔒</span>
+          <span className="text-white font-semibold tracking-tight">mqmadrasa.com</span>
+          <span className="ml-auto text-gray-500 text-[9px]">Custom Domain ✓</span>
+        </div>
+      </div>
+      {/* Site content */}
+      <div className="bg-gradient-to-br from-emerald-800 to-teal-900 p-5 text-white">
+        <div className="flex items-center justify-between mb-3">
+          <div className="flex items-center gap-2">
+            <div className="w-9 h-9 bg-white/20 rounded-xl flex items-center justify-center font-bold text-sm">MQ</div>
+            <div>
+              <div className="font-bold text-sm">মারকাযুল কুরআন মাদরাসা</div>
+              <div className="text-emerald-300 text-[10px]">mqmadrasa.com</div>
+            </div>
+          </div>
+          <span className="text-[9px] bg-green-500/30 border border-green-400/30 text-green-300 px-2 py-0.5 rounded-full">
+            🟢 Live
+          </span>
+        </div>
+        <div className="grid grid-cols-2 gap-2 mb-3">
+          <div className="bg-white/10 rounded-xl p-2.5">
+            <div className="text-[9px] text-emerald-300 mb-1">মোট শিক্ষার্থী</div>
+            <div className="text-white font-bold text-sm">৮৪৫</div>
+          </div>
+          <div className="bg-white/10 rounded-xl p-2.5">
+            <div className="text-[9px] text-emerald-300 mb-1">হিফজ বিভাগ</div>
+            <div className="text-yellow-300 font-bold text-sm">১২৩ জন</div>
+          </div>
+        </div>
+        <div className="bg-white/10 rounded-xl p-3">
+          <div className="text-xs font-medium mb-1.5">সাম্প্রতিক নোটিশ</div>
+          {["বার্ষিক মাহফিল ১৫ ডিসেম্বর", "অনলাইন ভর্তি চলছে"].map((n) => (
+            <div key={n} className="text-[9px] text-emerald-200 flex items-center gap-1 py-0.5">
+              <div className="w-1 h-1 bg-emerald-400 rounded-full flex-shrink-0" />
+              {n}
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="p-3 bg-gray-50 flex items-center justify-between">
+        <div className="flex items-center gap-1.5">
+          <CheckCircle size={12} className="text-green-500" />
+          <span className="text-[10px] text-gray-600 font-medium">mqmadrasa.com connected</span>
+        </div>
+        <span className="text-[10px] text-gray-400">Powered by Dikkhaloy</span>
+      </div>
+    </div>
+  );
+}
+
+export default function InstitutionWebsite() {
+  const [activePreview, setActivePreview] = useState<"subdomain" | "custom">("subdomain");
+
+  return (
+    <section id="website" className="section-pad bg-gray-50 relative overflow-hidden">
       <div className="absolute inset-0 geo-pattern opacity-40" />
+      {/* Islamic lattice pattern for this section */}
+      <div className="absolute inset-0 islamic-lattice-pattern pointer-events-none" />
       <div className="container-xl relative z-10">
 
         {/* Header */}
@@ -38,7 +160,8 @@ export default function InstitutionWebsite() {
             </span>
           </h2>
           <p className="section-subheading">
-            Dikkhaloy ব্যবহার করলে প্রতিটি প্রতিষ্ঠান তাদের নিজস্ব branding, domain এবং content সহ একটি পূর্ণাঙ্গ professional website পরিচালনা করতে পারবে।
+            Dikkhaloy ব্যবহার করলে প্রতিটি প্রতিষ্ঠান তাদের নিজস্ব branding, domain এবং content সহ
+            একটি পূর্ণাঙ্গ professional website পরিচালনা করতে পারবে।
           </p>
         </div>
 
@@ -46,7 +169,6 @@ export default function InstitutionWebsite() {
 
           {/* Left — Tenant tree diagram */}
           <div className="space-y-6">
-            {/* Central node */}
             <div className="flex justify-center">
               <div className="bg-gradient-to-br from-blue-600 to-indigo-700 rounded-2xl px-8 py-5 text-white shadow-xl">
                 <div className="text-center">
@@ -55,22 +177,19 @@ export default function InstitutionWebsite() {
                 </div>
               </div>
             </div>
-
-            {/* Tree lines */}
             <div className="flex justify-center">
               <div className="w-px h-8 bg-gray-300" />
             </div>
-
-            {/* Tenant cards */}
             <div className="grid grid-cols-3 gap-3">
               {tenants.map((t, i) => (
                 <div key={i} className="space-y-2">
-                  <div className={`${t.color} text-white text-center px-3 py-2.5 rounded-xl text-[11px] font-semibold shadow-md`}>
+                  <div className={`${t.color} text-white text-center px-2 py-2 rounded-xl text-[10px] font-semibold shadow-md leading-tight`}>
                     {t.sub}.dikkhaloy.com
                   </div>
                   <div className="bg-white rounded-xl p-3 border border-gray-100 text-center shadow-sm">
                     <div className="text-[10px] font-semibold text-gray-700 leading-tight">{t.label}</div>
-                    <div className="text-[9px] text-gray-400 mt-1">Own Website ✓</div>
+                    <div className="text-[9px] text-green-600 mt-1 font-medium">Own Website ✓</div>
+                    <div className="text-[8px] text-gray-400 mt-0.5">{t.domain}</div>
                   </div>
                 </div>
               ))}
@@ -80,63 +199,11 @@ export default function InstitutionWebsite() {
             <div className="bg-blue-50 border border-blue-100 rounded-2xl p-4">
               <p className="text-sm text-gray-700">
                 <strong className="text-blue-700">নিজের domain আছে?</strong> যেমন{" "}
+                <code className="bg-blue-100 text-blue-800 px-1.5 py-0.5 rounded text-xs">mqmadrasa.com</code>{" "}
+                বা{" "}
                 <code className="bg-blue-100 text-blue-800 px-1.5 py-0.5 rounded text-xs">dhanmondischool.edu.bd</code>{" "}
-                সেটাও connect করা যাবে।
+                — সেটাও connect করা যাবে।
               </p>
-            </div>
-          </div>
-
-          {/* Right — Website features + mockup */}
-          <div className="space-y-6">
-            {/* Mini browser mockup */}
-            <div className="bg-white rounded-2xl shadow-xl border border-gray-100 overflow-hidden">
-              {/* Browser chrome */}
-              <div className="bg-gray-100 px-4 py-2.5 flex items-center gap-2 border-b border-gray-200">
-                <div className="flex gap-1.5">
-                  <div className="w-3 h-3 rounded-full bg-red-400" />
-                  <div className="w-3 h-3 rounded-full bg-yellow-400" />
-                  <div className="w-3 h-3 rounded-full bg-green-400" />
-                </div>
-                <div className="flex-1 bg-white rounded-md px-3 py-1 text-xs text-gray-500 border border-gray-200 ml-2">
-                  jamia-islahiya.dikkhaloy.com
-                </div>
-              </div>
-
-              {/* Site mockup */}
-              <div className="bg-gradient-to-br from-green-700 to-green-900 p-5 text-white">
-                <div className="flex items-center gap-2 mb-3">
-                  <div className="w-8 h-8 bg-white/20 rounded-lg" />
-                  <div>
-                    <div className="font-bold text-sm">জামিয়া ইসলামিয়া ইসলাহিয়া</div>
-                    <div className="text-green-300 text-[10px]">প্রতিষ্ঠিত ১৯৭৮</div>
-                  </div>
-                </div>
-                <div className="bg-white/10 rounded-xl p-3 mb-3">
-                  <div className="text-xs font-medium mb-2">নোটিশ বোর্ড</div>
-                  <div className="space-y-1">
-                    {["বার্ষিক পরীক্ষার ফলাফল প্রকাশিত", "অনলাইন ভর্তি শুরু হয়েছে"].map((n) => (
-                      <div key={n} className="text-[10px] text-green-200 flex items-center gap-1">
-                        <div className="w-1 h-1 bg-green-400 rounded-full" />
-                        {n}
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                <div className="grid grid-cols-3 gap-2">
-                  {["ভর্তি", "রেজাল্ট", "যোগাযোগ"].map((b) => (
-                    <div key={b} className="bg-white/20 rounded-lg py-1.5 text-center text-[10px] font-medium">
-                      {b}
-                    </div>
-                  ))}
-                </div>
-              </div>
-
-              <div className="p-3 bg-gray-50 flex items-center justify-between">
-                <span className="text-[10px] text-gray-400">Powered by Dikkhaloy</span>
-                <a href="#themes" className="text-[10px] text-blue-600 flex items-center gap-1 font-medium">
-                  Theme দেখুন <ExternalLink size={10} />
-                </a>
-              </div>
             </div>
 
             {/* Feature grid */}
@@ -158,6 +225,53 @@ export default function InstitutionWebsite() {
             >
               Website Demo দেখুন <ArrowRight size={16} />
             </a>
+          </div>
+
+          {/* Right — Dual preview toggle */}
+          <div className="space-y-4">
+            {/* Toggle tabs */}
+            <div className="flex gap-2 bg-gray-100 rounded-xl p-1 w-fit">
+              <button
+                onClick={() => setActivePreview("subdomain")}
+                className={`px-4 py-2 rounded-lg text-xs font-semibold transition-all duration-200 ${
+                  activePreview === "subdomain"
+                    ? "bg-white text-blue-700 shadow-sm"
+                    : "text-gray-500 hover:text-gray-700"
+                }`}
+              >
+                🌐 Subdomain
+                <span className="ml-1 text-[9px] opacity-60">jamia-islahiya.dikkhaloy.com</span>
+              </button>
+              <button
+                onClick={() => setActivePreview("custom")}
+                className={`px-4 py-2 rounded-lg text-xs font-semibold transition-all duration-200 ${
+                  activePreview === "custom"
+                    ? "bg-white text-emerald-700 shadow-sm"
+                    : "text-gray-500 hover:text-gray-700"
+                }`}
+              >
+                ✨ Custom Domain
+                <span className="ml-1 text-[9px] opacity-60">mqmadrasa.com</span>
+              </button>
+            </div>
+
+            {/* Preview */}
+            <div className="relative" style={{ minHeight: "320px" }}>
+              <div
+                className={`transition-all duration-300 ${activePreview === "subdomain" ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2 pointer-events-none absolute inset-0"}`}
+              >
+                <SubdomainPreview />
+              </div>
+              <div
+                className={`transition-all duration-300 ${activePreview === "custom" ? "opacity-100 translate-y-0" : "opacity-0 translate-y-2 pointer-events-none absolute inset-0"}`}
+              >
+                <CustomDomainPreview />
+              </div>
+            </div>
+
+            <p className="text-xs text-gray-400 text-center">
+              💡 উপরের ট্যাব দুটো ক্লিক করে দুই ধরনের URL দেখুন
+            </p>
           </div>
         </div>
       </div>
