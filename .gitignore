@@ -33,3 +33,7 @@ Thumbs.db
 
 # Vercel
 .vercel
+
+# Large files — exceeds GitHub 100MB limit
+Landing_Page.zip
+*.zip
