@@ -1,7 +1,8 @@
 {
-  "name": "dikkhaloy-main-landing",
-  "framework": "nextjs",
-  "buildCommand": "npm run build",
-  "installCommand": "npm install --legacy-peer-deps",
-  "outputDirectory": ".next"
+    "name":  "dikkhaloy-main-landing",
+    "framework":  "nextjs",
+    "buildCommand":  "npm run build",
+    "installCommand":  "npm install --legacy-peer-deps",
+    "outputDirectory":  ".next",
+    "cleanUrls":  true
 }
