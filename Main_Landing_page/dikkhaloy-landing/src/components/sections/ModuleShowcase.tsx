@@ -142,9 +142,8 @@ export default function ModuleShowcase() {
 
   return (
     <section className="section-pad bg-white relative overflow-hidden">
-      {/* Islamic arabesque background pattern */}
-      <div className="absolute inset-0 islamic-arabesque-pattern pointer-events-none opacity-80" />
-
+      {/* Arabesque pattern */}
+      <div className="absolute inset-0 pat-arcs" style={{ opacity:0.8 }} />
       <div className="container-xl relative z-10">
         <div className="text-center mb-14">
           <span className="tag bg-indigo-100 text-indigo-700 mb-4">Interactive Demo</span>
@@ -259,26 +258,45 @@ export default function ModuleShowcase() {
               })}
             </div>
 
-            {/* Description card */}
-            <div className="bg-white rounded-2xl p-5 border border-gray-100 shadow-card">
-              <div className="flex items-center gap-2 mb-2">
-                <div className={`w-3 h-3 rounded-full ${modules.find(m=>m.id===active)?.accentColor}`} />
-                <h4 className="font-bold text-gray-900">{modules.find(m=>m.id===active)?.label} Module</h4>
-              </div>
-              <p className="text-gray-600 text-sm mb-4 leading-relaxed">
-                {modules.find(m=>m.id===active)?.description}
-              </p>
-              <div className="grid grid-cols-2 gap-2">
-                {modules.find(m=>m.id===active)?.features.map((f) => (
-                  <div key={f} className="flex items-center gap-2 text-sm text-gray-600">
-                    <div className="w-4 h-4 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
-                      <div className="w-2 h-2 bg-green-500 rounded-full" />
+            {/* Description card — with rotating glow border */}
+            {(() => {
+              const activeM = modules.find(m => m.id === active);
+              const glowHex = activeM?.mockupBg.includes("green") ? "#16a34a"
+                : activeM?.mockupBg.includes("blue") ? "#2563eb"
+                : activeM?.mockupBg.includes("cyan") ? "#0891b2"
+                : activeM?.mockupBg.includes("purple") ? "#7c3aed"
+                : activeM?.mockupBg.includes("orange") ? "#ea580c"
+                : activeM?.mockupBg.includes("rose") ? "#e11d48"
+                : activeM?.mockupBg.includes("teal") ? "#0d9488"
+                : "#475569";
+              return (
+                <div
+                  className="relative rounded-2xl p-[2px] overflow-hidden"
+                  style={{
+                    background: `conic-gradient(from 0deg, transparent 0deg 260deg, ${glowHex}99 260deg 360deg)`,
+                    animation: "spin-cw 3.5s linear infinite",
+                  }}
+                >
+                  <div className="bg-white rounded-[14px] p-5">
+                    <div className="flex items-center gap-2 mb-2">
+                      <div className={`w-3 h-3 rounded-full ${activeM?.accentColor}`} />
+                      <h4 className="font-bold text-gray-900">{activeM?.label} Module</h4>
                     </div>
-                    {f}
+                    <p className="text-gray-600 text-sm mb-4 leading-relaxed">{activeM?.description}</p>
+                    <div className="grid grid-cols-2 gap-2">
+                      {activeM?.features.map((f) => (
+                        <div key={f} className="flex items-center gap-2 text-sm text-gray-600">
+                          <div className="w-4 h-4 bg-green-100 rounded-full flex items-center justify-center flex-shrink-0">
+                            <div className="w-2 h-2 bg-green-500 rounded-full" />
+                          </div>
+                          {f}
+                        </div>
+                      ))}
+                    </div>
                   </div>
-                ))}
-              </div>
-            </div>
+                </div>
+              );
+            })()}
           </div>
         </div>
 

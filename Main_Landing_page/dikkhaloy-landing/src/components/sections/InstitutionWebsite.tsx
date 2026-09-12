@@ -7,15 +7,15 @@ import {
 } from "lucide-react";
 
 const websiteFeatures = [
-  { icon: Globe,          label: "Custom Domain" },
-  { icon: Palette,        label: "Custom Theme" },
-  { icon: FileText,       label: "Notice Board" },
-  { icon: GraduationCap,  label: "Admission Form" },
-  { icon: Image,          label: "Gallery" },
-  { icon: FileText,       label: "Result View" },
-  { icon: DollarSign,     label: "Donation" },
-  { icon: Phone,          label: "Contact Page" },
-  { icon: Search,         label: "SEO Ready" },
+  { icon: Globe,         label: "Custom Domain",  color: "text-blue-600",   bg: "bg-blue-50",   hoverBorder: "#2563eb" },
+  { icon: Palette,       label: "Custom Theme",   color: "text-purple-600", bg: "bg-purple-50", hoverBorder: "#7c3aed" },
+  { icon: FileText,      label: "Notice Board",   color: "text-amber-600",  bg: "bg-amber-50",  hoverBorder: "#d97706" },
+  { icon: GraduationCap, label: "Admission Form", color: "text-green-600",  bg: "bg-green-50",  hoverBorder: "#16a34a" },
+  { icon: Image,         label: "Gallery",        color: "text-rose-600",   bg: "bg-rose-50",   hoverBorder: "#e11d48" },
+  { icon: FileText,      label: "Result View",    color: "text-indigo-600", bg: "bg-indigo-50", hoverBorder: "#4f46e5" },
+  { icon: DollarSign,    label: "Donation",       color: "text-emerald-600",bg: "bg-emerald-50",hoverBorder: "#059669" },
+  { icon: Phone,         label: "Contact Page",   color: "text-cyan-600",   bg: "bg-cyan-50",   hoverBorder: "#0891b2" },
+  { icon: Search,        label: "SEO Ready",      color: "text-orange-600", bg: "bg-orange-50", hoverBorder: "#ea580c" },
 ];
 
 const tenants = [
@@ -142,10 +142,8 @@ export default function InstitutionWebsite() {
   const [activePreview, setActivePreview] = useState<"subdomain" | "custom">("subdomain");
 
   return (
-    <section id="website" className="section-pad bg-gray-50 relative overflow-hidden">
-      <div className="absolute inset-0 geo-pattern opacity-40" />
-      {/* Islamic lattice pattern for this section */}
-      <div className="absolute inset-0 islamic-lattice-pattern pointer-events-none" />
+    <section id="website" className="section-pad relative overflow-hidden" style={{ background:"linear-gradient(135deg,#fff7ed 0%,#fafafa 50%,#fff7ed 100%)" }}>
+      <div className="absolute inset-0 pat-hex" style={{ opacity:0.8 }} />
       <div className="container-xl relative z-10">
 
         {/* Header */}
@@ -206,15 +204,37 @@ export default function InstitutionWebsite() {
               </p>
             </div>
 
-            {/* Feature grid */}
+            {/* Feature grid — floating cards with unique colors */}
             <div className="grid grid-cols-3 gap-2">
-              {websiteFeatures.map((f) => (
+              {websiteFeatures.map((f, i) => (
                 <div
                   key={f.label}
-                  className="bg-white rounded-xl p-3 border border-gray-100 text-center hover:border-orange-200 hover:shadow-sm transition-all"
+                  className="group relative bg-white rounded-xl p-3 border-2 text-center
+                             hover:-translate-y-2 transition-all duration-300 cursor-default"
+                  style={{
+                    borderColor: `${f.hoverBorder}20`,
+                    boxShadow: `0 2px 12px ${f.hoverBorder}18`,
+                    animationDelay: `${i * 0.12}s`,
+                  }}
+                  onMouseEnter={e => {
+                    const el = e.currentTarget as HTMLElement;
+                    el.style.borderColor = `${f.hoverBorder}66`;
+                    el.style.boxShadow = `0 8px 28px ${f.hoverBorder}44`;
+                  }}
+                  onMouseLeave={e => {
+                    const el = e.currentTarget as HTMLElement;
+                    el.style.borderColor = `${f.hoverBorder}20`;
+                    el.style.boxShadow = `0 2px 12px ${f.hoverBorder}18`;
+                  }}
                 >
-                  <f.icon size={16} className="text-orange-500 mx-auto mb-1.5" />
+                  <div className={`w-9 h-9 mx-auto mb-2 rounded-xl ${f.bg} group-hover:scale-110 flex items-center justify-center transition-transform duration-300`}>
+                    <f.icon size={17} className={f.color} />
+                  </div>
                   <span className="text-[11px] font-medium text-gray-700">{f.label}</span>
+                  {/* shimmer */}
+                  <div className="absolute inset-0 rounded-xl overflow-hidden pointer-events-none">
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/50 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-600" />
+                  </div>
                 </div>
               ))}
             </div>

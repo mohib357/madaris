@@ -1,7 +1,7 @@
 "use client";
 
-import { useState, useRef, useEffect } from "react";
-import { MessageCircle, X, Send, ChevronDown } from "lucide-react";
+import { useState, useRef, useEffect, useCallback } from "react";
+import { MessageCircle, X, Send, ChevronDown, ArrowUp } from "lucide-react";
 
 interface Message {
   id: number;
@@ -44,9 +44,21 @@ export default function FloatingChat() {
   const [input, setInput]       = useState("");
   const [typing, setTyping]     = useState(false);
   const [unread, setUnread]     = useState(0);
+  const [showScrollTop, setShowScrollTop] = useState(false);
   const bottomRef               = useRef<HTMLDivElement>(null);
   const inputRef                = useRef<HTMLInputElement>(null);
   const nextId                  = useRef(2);
+
+  /* Show scroll-to-top when scrolled > 400px */
+  useEffect(() => {
+    const onScroll = () => setShowScrollTop(window.scrollY > 400);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  const scrollToTop = useCallback(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
 
   // Auto-scroll on new message
   useEffect(() => {
@@ -202,6 +214,25 @@ export default function FloatingChat() {
           </div>
         </div>
       )}
+
+      {/* ── Scroll to top button (FAB-এর উপরে) ── */}
+      <button
+        onClick={scrollToTop}
+        aria-label="পেজের উপরে যান"
+        className="fixed right-6 z-[61] flex items-center justify-center rounded-full text-white transition-all duration-300"
+        style={{
+          bottom: "9rem",          /* chat-fab is at 5rem, so this sits above */
+          width:  "3rem",
+          height: "3rem",
+          background: "linear-gradient(135deg,#2563eb,#4f46e5)",
+          boxShadow: "0 4px 18px rgba(37,99,235,0.50)",
+          opacity:   showScrollTop ? 1 : 0,
+          transform: showScrollTop ? "translateY(0) scale(1)" : "translateY(12px) scale(0.85)",
+          pointerEvents: showScrollTop ? "auto" : "none",
+        }}
+      >
+        <ArrowUp size={20} strokeWidth={2.5} />
+      </button>
 
       {/* ── FAB button ── */}
       <button

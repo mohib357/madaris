@@ -24,8 +24,11 @@ export default function AdmissionJourney() {
   }, []);
 
   return (
-    <section id="admission" className="section-pad bg-gradient-to-br from-blue-50 via-white to-indigo-50">
-      <div className="container-xl">
+    <section id="admission" className="section-pad relative overflow-hidden"
+      style={{ background:"linear-gradient(135deg,#eff6ff 0%,#f0fdf4 50%,#eef2ff 100%)" }}>
+      <div className="absolute inset-0 pat-arcs" style={{ opacity:0.8 }} />
+      <div className="absolute inset-0 pat-grid" style={{ opacity:0.5 }} />
+      <div className="container-xl relative z-10">
         <div className="text-center mb-14">
           <span className="tag bg-blue-100 text-blue-700 mb-4">Online Admission</span>
           <h2 className="section-heading">

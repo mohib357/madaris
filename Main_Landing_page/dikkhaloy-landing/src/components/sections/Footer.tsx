@@ -34,9 +34,19 @@ const companyLinks = [
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-950 text-gray-400">
+    <footer className="bg-gray-950 text-gray-400 relative overflow-hidden">
+      {/* Footer pattern — subtle Islamic star tile */}
+      <div className="absolute inset-0 pointer-events-none" style={{
+        backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='none'%3E%3Cpolygon points='40,6 47,27 68,27 51,40 58,62 40,48 22,62 29,40 12,27 33,27' stroke='%23334155' stroke-width='1' stroke-opacity='0.6' fill='none'/%3E%3Ccircle cx='40' cy='40' r='8' stroke='%23334155' stroke-width='0.8' stroke-opacity='0.4' fill='none'/%3E%3C/g%3E%3C/svg%3E")`,
+        backgroundSize: "80px 80px",
+        opacity: 1,
+      }} />
+      {/* Top glow line */}
+      <div className="absolute top-0 left-0 right-0 h-px" style={{
+        background:"linear-gradient(90deg,transparent,rgba(59,130,246,0.4),transparent)"
+      }}/>
       {/* Main footer */}
-      <div className="container-xl py-16">
+      <div className="container-xl py-16 relative z-10">
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 lg:gap-10">
 
           {/* Brand */}
@@ -155,7 +165,7 @@ export default function Footer() {
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-gray-800/60">
+      <div className="border-t border-gray-800/60 relative z-10">
         <div className="container-xl py-5 flex flex-col sm:flex-row items-center justify-between gap-3">
           <p className="text-xs text-gray-600">
             © ২০২৬ Dikkhaloy. All rights reserved.

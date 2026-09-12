@@ -24,8 +24,9 @@ export default function ResultSection() {
   const max = Math.max(...gradeData.map((g) => g.count));
 
   return (
-    <section id="results" className="section-pad bg-gray-50">
-      <div className="container-xl">
+    <section id="results" className="section-pad relative overflow-hidden bg-slate-50">
+      <div className="absolute inset-0 pat-checker" style={{ opacity:1 }} />
+      <div className="container-xl relative z-10">
         <div className="text-center mb-14">
           <span className="tag bg-purple-100 text-purple-700 mb-4">Exam & Result</span>
           <h2 className="section-heading">
@@ -43,7 +44,10 @@ export default function ResultSection() {
             {flow.map((step, i) => (
               <div
                 key={step.label}
-                className="flex items-center gap-4 bg-white rounded-2xl p-4 border border-gray-100 hover:border-purple-200 hover:shadow-sm transition-all group"
+                className="flex items-center gap-4 bg-white rounded-2xl p-4 border-2 hover:border-purple-300 hover:shadow-md hover:-translate-y-0.5 transition-all group"
+                style={{ borderColor: "#7c3aed22" }}
+                onMouseEnter={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "#7c3aed66"; }}
+                onMouseLeave={(e) => { (e.currentTarget as HTMLElement).style.borderColor = "#7c3aed22"; }}
               >
                 <div className="w-12 h-12 bg-purple-50 rounded-xl flex items-center justify-center text-xl group-hover:bg-purple-100 transition-colors flex-shrink-0">
                   {step.emoji}

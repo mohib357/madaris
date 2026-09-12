@@ -6,375 +6,353 @@
 
 /* ===== DESIGN TOKENS ===== */
 :root {
-  /* Primary — Deep Teal/Navy for SaaS feel */
-  --primary-50: #eef4ff;
-  --primary-100: #d9e8ff;
-  --primary-200: #bcd4ff;
-  --primary-300: #8eb7ff;
-  --primary-400: #5a91fc;
-  --primary-500: #3470f5;
-  --primary-600: #1e52ea;
-  --primary-700: #1740d6;
-  --primary-800: #1935ad;
-  --primary-900: #1a3089;
-  --primary-rgb: 52, 112, 245;
-
-  /* Accent — Islamic Green */
-  --accent: #16a34a;
-  --accent-light: #dcfce7;
-
-  /* Neutrals */
-  --surface: #f8fafc;
-  --muted: #94a3b8;
-  --border: #e2e8f0;
-
-  /* Fonts */
+  --primary-50: #eef4ff; --primary-100: #d9e8ff; --primary-200: #bcd4ff;
+  --primary-300: #8eb7ff; --primary-400: #5a91fc; --primary-500: #3470f5;
+  --primary-600: #1e52ea; --primary-700: #1740d6; --primary-800: #1935ad;
+  --primary-900: #1a3089; --primary-rgb: 52, 112, 245;
+  --accent: #16a34a; --accent-light: #dcfce7;
+  --surface: #f8fafc; --muted: #94a3b8; --border: #e2e8f0;
   --font-inter: "Inter", sans-serif;
 }
-
-/* Madaris variant (applied via data-theme="madaris") */
 [data-theme="madaris"] {
-  --primary-50: #f0fdf4;
-  --primary-100: #dcfce7;
-  --primary-200: #bbf7d0;
-  --primary-300: #86efac;
-  --primary-400: #4ade80;
-  --primary-500: #22c55e;
-  --primary-600: #16a34a;
-  --primary-700: #15803d;
-  --primary-800: #166534;
-  --primary-900: #14532d;
-  --primary-rgb: 34, 197, 94;
-  --accent: #ca8a04;
-  --accent-light: #fef9c3;
+  --primary-500: #22c55e; --primary-600: #16a34a; --primary-700: #15803d;
+  --primary-rgb: 34,197,94; --accent: #ca8a04; --accent-light: #fef9c3;
 }
 
-/* ===== BASE STYLES ===== */
+/* ===== BASE ===== */
 @layer base {
-  * {
-    @apply box-border;
-  }
-
-  html {
-    scroll-behavior: smooth;
-    -webkit-text-size-adjust: 100%;
-  }
-
-  body {
-    @apply bg-white text-gray-900 antialiased;
-    font-family: "Inter", "Hind Siliguri", sans-serif;
-  }
-
-  h1, h2, h3, h4, h5, h6 {
-    @apply font-semibold leading-tight tracking-tight;
-  }
-
-  .bangla {
-    font-family: "Hind Siliguri", sans-serif;
-  }
+  * { @apply box-border; }
+  html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+  body { @apply bg-white text-gray-900 antialiased; font-family: "Inter","Hind Siliguri",sans-serif; }
+  h1,h2,h3,h4,h5,h6 { @apply font-semibold leading-tight tracking-tight; }
+  .bangla { font-family: "Hind Siliguri",sans-serif; }
 }
 
 /* ===== COMPONENTS ===== */
 @layer components {
-
   .btn-primary {
-    @apply inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold rounded-xl transition-all duration-200 shadow-md hover:shadow-lg active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
+    @apply inline-flex items-center gap-2 px-6 py-3 bg-blue-600 hover:bg-blue-700
+    text-white font-semibold rounded-xl transition-all duration-200 shadow-md
+    hover:shadow-lg active:scale-[0.98] focus:outline-none focus:ring-2
+    focus:ring-blue-500 focus:ring-offset-2;
   }
-
   .btn-secondary {
-    @apply inline-flex items-center gap-2 px-6 py-3 bg-white hover:bg-gray-50 text-blue-600 font-semibold rounded-xl border-2 border-blue-200 hover:border-blue-400 transition-all duration-200 shadow-sm hover:shadow-md active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
+    @apply inline-flex items-center gap-2 px-6 py-3 bg-white hover:bg-gray-50
+    text-blue-600 font-semibold rounded-xl border-2 border-blue-200
+    hover:border-blue-400 transition-all duration-200 shadow-sm hover:shadow-md
+    active:scale-[0.98] focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2;
   }
-
   .btn-ghost {
-    @apply inline-flex items-center gap-2 px-5 py-2.5 text-gray-600 hover:text-blue-600 hover:bg-blue-50 font-medium rounded-lg transition-all duration-200;
+    @apply inline-flex items-center gap-2 px-5 py-2.5 text-gray-600
+    hover:text-blue-600 hover:bg-blue-50 font-medium rounded-lg transition-all duration-200;
   }
-
-  .section-heading {
-    @apply text-3xl md:text-4xl font-bold text-gray-900 leading-tight;
-  }
-
-  .section-subheading {
-    @apply text-lg text-gray-600 leading-relaxed mt-4 max-w-2xl mx-auto;
-  }
-
-  .card {
-    @apply bg-white rounded-2xl border border-gray-100 shadow-card hover:shadow-card-hover transition-all duration-300;
-  }
-
-  .tag {
-    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wide;
-  }
-
-  .gradient-text {
-    @apply bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent;
-  }
-
-  .glass {
-    @apply bg-white/80 backdrop-blur-sm border border-white/20;
-  }
-
-  .section-pad {
-    @apply py-20 md:py-24 lg:py-28;
-  }
-
-  .container-xl {
-    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
-  }
-
-  /* Ornamental divider - subtle Islamic touch */
-  .ornament-divider {
-    @apply flex items-center gap-4 my-6;
-  }
-
-  .ornament-divider::before,
-  .ornament-divider::after {
-    content: '';
-    @apply flex-1 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent;
-  }
-
-  /* Geometric pattern overlay */
-  .geo-pattern {
-    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%234f46e5' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-  }
-
-  /* Islamic geometric pattern */
-  .islamic-pattern {
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='%2316a34a' fill-opacity='0.04'%3E%3Cpath d='M0 0h40v40H0V0zm40 40h40v40H40V40zm0-40h2l-2 2V0zm0 4l4-4h2l-6 6V4zm0 4l8-8h2L40 10V8zm0 4L52 0h2L40 14v-2zm0 4L56 0h2L40 18v-2zm0 4L60 0h2L40 22v-2zm0 4L64 0h2L40 26v-2zm0 4L68 0h2L40 30v-2zm0 4L72 0h2L40 34v-2zm0 4L76 0h2L40 38v-2zm0 4L80 0v2L42 40h-2zm4 0L80 4v2L46 40h-2zm4 0L80 8v2L50 40h-2zm4 0L80 12v2L54 40h-2zm4 0L80 16v2L58 40h-2zm4 0L80 20v2L62 40h-2zm4 0L80 24v2L66 40h-2zm4 0L80 28v2L70 40h-2zm4 0L80 32v2L74 40h-2zm4 0L80 36v2L78 40h-2z'/%3E%3C/g%3E%3C/svg%3E");
+  .section-heading { @apply text-3xl md:text-4xl font-bold text-gray-900 leading-tight; }
+  .section-subheading { @apply text-lg text-gray-600 leading-relaxed mt-4 max-w-2xl mx-auto; }
+  .card { @apply bg-white rounded-2xl border border-gray-100 shadow-card hover:shadow-card-hover transition-all duration-300; }
+  .tag { @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold uppercase tracking-wide; }
+  .gradient-text { @apply bg-gradient-to-r from-blue-600 to-indigo-600 bg-clip-text text-transparent; }
+  .glass { @apply bg-white/80 backdrop-blur-sm border border-white/20; }
+  .section-pad { @apply py-20 md:py-24 lg:py-28; }
+  .container-xl { @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8; }
+  .ornament-divider { @apply flex items-center gap-4 my-6; }
+  .ornament-divider::before,.ornament-divider::after {
+    content:''; @apply flex-1 h-px bg-gradient-to-r from-transparent via-gray-200 to-transparent;
   }
 }
 
 /* ===== UTILITIES ===== */
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-
-  .scrollbar-hide {
-    -ms-overflow-style: none;
-    scrollbar-width: none;
-  }
-
-  .scrollbar-hide::-webkit-scrollbar {
-    display: none;
-  }
-
-  /* Fade in animation for scroll reveal */
-  .fade-in {
-    opacity: 0;
-    transform: translateY(20px);
-    transition: opacity 0.6s ease, transform 0.6s ease;
-  }
-
-  .fade-in.visible {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  .text-balance { text-wrap: balance; }
+  .scrollbar-hide { -ms-overflow-style:none; scrollbar-width:none; }
+  .scrollbar-hide::-webkit-scrollbar { display:none; }
+  .fade-in { opacity:0; transform:translateY(20px); transition:opacity 0.6s ease,transform 0.6s ease; }
+  .fade-in.visible { opacity:1; transform:translateY(0); }
 }
 
 /* ===== CUSTOM SCROLLBAR ===== */
-::-webkit-scrollbar {
-  width: 6px;
-}
+::-webkit-scrollbar { width:6px; }
+::-webkit-scrollbar-track { background:#f1f5f9; }
+::-webkit-scrollbar-thumb { background:#94a3b8; border-radius:3px; }
+::-webkit-scrollbar-thumb:hover { background:#64748b; }
 
-::-webkit-scrollbar-track {
-  background: #f1f5f9;
-}
-
-::-webkit-scrollbar-thumb {
-  background: #94a3b8;
-  border-radius: 3px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background: #64748b;
-}
-
-/* ===== DASHBOARD MOCKUP STYLES ===== */
-.dashboard-mock {
-  @apply rounded-xl overflow-hidden border border-gray-200 shadow-2xl;
-}
-
-.sidebar-item {
-  @apply flex items-center gap-2 px-3 py-2 rounded-lg text-sm cursor-pointer transition-colors;
-}
-
-.sidebar-item.active {
-  @apply bg-blue-600 text-white;
-}
-
-.sidebar-item:not(.active) {
-  @apply text-gray-600 hover:bg-gray-100;
-}
-
-/* ===== TICKER ANIMATION ===== */
-.ticker-wrap {
-  overflow: hidden;
-  white-space: nowrap;
-}
-
-.ticker-inner {
-  display: inline-flex;
-  animation: ticker 30s linear infinite;
-}
-
-.ticker-inner:hover {
-  animation-play-state: paused;
-}
+/* ===== DASHBOARD ===== */
+.dashboard-mock { @apply rounded-xl overflow-hidden border border-gray-200 shadow-2xl; }
+.sidebar-item { @apply flex items-center gap-2 px-3 py-2 rounded-lg text-sm cursor-pointer transition-colors; }
+.sidebar-item.active { @apply bg-blue-600 text-white; }
+.sidebar-item:not(.active) { @apply text-gray-600 hover:bg-gray-100; }
 
 /* ===== PRICING SLIDER ===== */
-input[type='range'] {
-  -webkit-appearance: none;
-  appearance: none;
-  @apply w-full h-2 rounded-full bg-gray-200 outline-none;
+input[type='range'] { -webkit-appearance:none; appearance:none; @apply w-full h-2 rounded-full bg-gray-200 outline-none; }
+input[type='range']::-webkit-slider-thumb { -webkit-appearance:none; appearance:none; @apply w-6 h-6 rounded-full bg-blue-600 cursor-pointer shadow-md; }
+input[type='range']::-moz-range-thumb { @apply w-6 h-6 rounded-full bg-blue-600 cursor-pointer shadow-md border-0; }
+
+/* ===== RESPONSIVE ===== */
+@media (max-width:640px) {
+  .section-heading { @apply text-2xl; }
+  h1 { font-size:2rem!important; line-height:1.2!important; }
 }
 
-input[type='range']::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  @apply w-6 h-6 rounded-full bg-blue-600 cursor-pointer shadow-md;
+/* ==========================================================
+   ROTATING BORDER GLOW
+   Works by rotating a wrapper div that contains a conic-gradient
+   pseudo-element. No @property needed — universally supported.
+   ========================================================== */
+
+/* --- Clockwise (used on Problem, Solution, HowItWorks cards) --- */
+.rotate-border-cw {
+  position: relative;
+  border-radius: 1rem;
+  padding: 2px;
+  overflow: hidden;
+  isolation: isolate;
+}
+.rotate-border-cw::before {
+  content: '';
+  position: absolute;
+  inset: -100%;
+  width: 300%;
+  height: 300%;
+  top: -100%;
+  left: -100%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg 240deg,
+    var(--glow-col, #3b82f6) 240deg 290deg,
+    var(--glow-col, #3b82f6) 290deg 320deg,
+    transparent 320deg 360deg
+  );
+  filter: blur(1px);
+  animation: borderSpin 9s linear infinite;
+  z-index: 0;
+  border-radius: 0;
+}
+.rotate-border-cw .rb-inner {
+  position: relative;
+  z-index: 1;
+  border-radius: calc(1rem - 2px);
+  background: var(--inner-bg, #ffffff);
+  height: 100%;
+  width: 100%;
+  box-shadow: 0 6px 28px rgba(0,0,0,0.10), inset 0 0 0 1px rgba(255,255,255,0.8);
 }
 
-input[type='range']::-moz-range-thumb {
-  @apply w-6 h-6 rounded-full bg-blue-600 cursor-pointer shadow-md border-0;
+/* --- Counter-clockwise (used on CoreFeatures cards) --- */
+.rotate-border-ccw {
+  position: relative;
+  border-radius: 1rem;
+  padding: 2px;
+  overflow: hidden;
+  isolation: isolate;
+}
+.rotate-border-ccw::before {
+  content: '';
+  position: absolute;
+  inset: -100%;
+  width: 300%;
+  height: 300%;
+  top: -100%;
+  left: -100%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0deg 240deg,
+    var(--glow-col, #8b5cf6) 240deg 290deg,
+    var(--glow-col, #8b5cf6) 290deg 320deg,
+    transparent 320deg 360deg
+  );
+  filter: blur(1px);
+  animation: borderSpinCCW 9s linear infinite;
+  z-index: 0;
+  border-radius: 0;
+}
+.rotate-border-ccw .rb-inner {
+  position: relative;
+  z-index: 1;
+  border-radius: calc(1rem - 2px);
+  background: var(--inner-bg, #ffffff);
+  height: 100%;
+  width: 100%;
+  box-shadow: 0 6px 28px rgba(0,0,0,0.10), inset 0 0 0 1px rgba(255,255,255,0.8);
 }
 
-/* ===== RESPONSIVE TYPOGRAPHY ===== */
-@media (max-width: 640px) {
-  .section-heading {
-    @apply text-2xl;
-  }
-
-  h1 {
-    font-size: 2rem !important;
-    line-height: 1.2 !important;
-  }
+@keyframes borderSpin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes borderSpinCCW {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(-360deg); }
 }
 
-/* ===================================================
-   ISLAMIC PATTERNS — Section-specific backgrounds
-   Each class applies a unique thematic SVG overlay.
-   Overlay opacity is kept very low (3-6%) so text
-   remains fully readable.
-   =================================================== */
+/* On hover: speed up + stronger glow */
+.rotate-border-cw:hover::before,
+.rotate-border-ccw:hover::before {
+  animation-duration: 3s;
+  filter: blur(2px) brightness(1.5);
+}
+.rotate-border-cw:hover .rb-inner,
+.rotate-border-ccw:hover .rb-inner {
+  box-shadow: 0 10px 40px rgba(0,0,0,0.15), inset 0 0 0 1px rgba(255,255,255,0.9);
+}
+/* ==========================================================
+   SECTION BACKGROUND PATTERNS
+   Each class provides a visible SVG tile (15-20% opacity).
+   Apply directly to section wrappers.
+   ========================================================== */
 
-/* 1. Star/Geometric — Hero & dark sections */
-.islamic-star-pattern {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100' height='100' viewBox='0 0 100 100'%3E%3Cpath fill='%23ffffff' fill-opacity='0.04' d='M50 0l6.18 19.02L73.51 7.3l-7.18 18.7L86.6 26l-19.02 6.18L80.9 49.5l-18.7-7.18L62.2 62.6l-6.18-19.02L38.7 55.3l7.18-18.7L25.6 36.6l19.02-6.18L31.3 13.1l18.7 7.18z'/%3E%3C/svg%3E");
+/* 1 — Cross/Plus grid (light blue) — used in features, dashboard */
+.pat-grid {
+  background-color: inherit;
+  background-image:
+    linear-gradient(rgba(79,70,229,0.10) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(79,70,229,0.10) 1px, transparent 1px);
+  background-size: 40px 40px;
 }
 
-/* 2. Arabesque floral — Feature/core sections (light bg) */
-.islamic-arabesque-pattern {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='%2316a34a' fill-opacity='0.035'%3E%3Ccircle cx='60' cy='60' r='20'/%3E%3Ccircle cx='60' cy='60' r='30' fill='none' stroke='%2316a34a' stroke-opacity='0.04' stroke-width='1'/%3E%3Ccircle cx='60' cy='60' r='40' fill='none' stroke='%2316a34a' stroke-opacity='0.03' stroke-width='1'/%3E%3Cpath d='M60 20 L80 60 L60 100 L40 60 Z' fill='none' stroke='%2316a34a' stroke-opacity='0.04' stroke-width='1'/%3E%3Cpath d='M20 60 L60 40 L100 60 L60 80 Z' fill='none' stroke='%2316a34a' stroke-opacity='0.04' stroke-width='1'/%3E%3C/g%3E%3C/svg%3E");
+/* 2 — Diagonal stripes (green) — used in Finance, Solution */
+.pat-stripes {
+  background-image: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 18px,
+    rgba(22,163,74,0.08) 18px,
+    rgba(22,163,74,0.08) 19px
+  );
 }
 
-/* 3. Moroccan tile — Trust / Stats section */
-.islamic-tile-pattern {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='none' stroke='%233470f5' stroke-opacity='0.05' stroke-width='1'%3E%3Crect x='10' y='10' width='60' height='60' rx='4'/%3E%3Crect x='20' y='20' width='40' height='40' rx='3'/%3E%3Cline x1='40' y1='10' x2='40' y2='70'/%3E%3Cline x1='10' y1='40' x2='70' y2='40'/%3E%3Cline x1='10' y1='10' x2='70' y2='70'/%3E%3Cline x1='70' y1='10' x2='10' y2='70'/%3E%3C/g%3E%3C/svg%3E");
+/* 3 — Dot grid — used in Trust, RolePortals, Communication */
+.pat-dots {
+  background-image: radial-gradient(circle, rgba(99,102,241,0.18) 1.5px, transparent 1.5px);
+  background-size: 28px 28px;
 }
 
-/* 4. Muqarnas lattice — Pricing / CTA sections */
-.islamic-lattice-pattern {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='64' height='64' viewBox='0 0 64 64'%3E%3Cg fill='%231e52ea' fill-opacity='0.04'%3E%3Cpolygon points='32,4 44,16 60,16 60,32 44,48 32,60 20,48 4,32 4,16 20,16'/%3E%3Cpolygon points='32,14 42,22 54,22 54,32 42,42 32,50 22,42 10,32 10,22 22,22' fill='none' stroke='%231e52ea' stroke-opacity='0.04' stroke-width='1'/%3E%3C/g%3E%3C/svg%3E");
+/* 4 — Islamic star tile — used in Madrasa, Security */
+.pat-islamic {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Cg fill='none'%3E%3Cpolygon points='40,5 47,27 70,27 51,40 58,62 40,49 22,62 29,40 10,27 33,27' fill='none' stroke='%2316a34a' stroke-width='1.2' stroke-opacity='0.18'/%3E%3Ccircle cx='40' cy='40' r='8' fill='none' stroke='%2316a34a' stroke-width='1' stroke-opacity='0.12'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 80px 80px;
 }
 
-/* 5. Calligraphic mesh — dark green Madrasa sections */
-.islamic-mesh-pattern {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='90' height='90' viewBox='0 0 90 90'%3E%3Cg fill='none' stroke='%2386efac' stroke-opacity='0.06' stroke-width='1'%3E%3Ccircle cx='45' cy='45' r='35'/%3E%3Ccircle cx='45' cy='45' r='25'/%3E%3Ccircle cx='45' cy='45' r='15'/%3E%3Cline x1='10' y1='45' x2='80' y2='45'/%3E%3Cline x1='45' y1='10' x2='45' y2='80'/%3E%3Cline x1='20' y1='20' x2='70' y2='70'/%3E%3Cline x1='70' y1='20' x2='20' y2='70'/%3E%3C/g%3E%3C/svg%3E");
+/* 5 — Hexagon mesh — used in MultiTenant, HowItWorks */
+.pat-hex {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='100' viewBox='0 0 56 100'%3E%3Cpath d='M28 66L0 50V17L28 1l28 16v33L28 66zM28 100L0 84V51l28-17 28 17v33L28 100z' fill='none' stroke='%232563eb' stroke-opacity='0.10' stroke-width='1.2'/%3E%3C/svg%3E");
+  background-size: 56px 100px;
 }
 
-/* 6. Eight-point star — Testimonials / Review sections */
-.islamic-eightstar-pattern {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96' viewBox='0 0 96 96'%3E%3Cg fill='%235a91fc' fill-opacity='0.04'%3E%3Cpath d='M48 8l8 24h24l-20 14 8 24-20-14-20 14 8-24L16 32h24z'/%3E%3Cpath d='M48 28l4 12h12l-10 7 4 12-10-7-10 7 4-12-10-7h12z' fill-opacity='0.03'/%3E%3C/g%3E%3C/svg%3E");
+/* 6 — Arabesque arcs — used in FAQ, Pricing, Admission */
+.pat-arcs {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='80' height='80' viewBox='0 0 80 80'%3E%3Ccircle cx='0' cy='0' r='30' fill='none' stroke='%234f46e5' stroke-width='1.2' stroke-opacity='0.12'/%3E%3Ccircle cx='80' cy='0' r='30' fill='none' stroke='%234f46e5' stroke-width='1.2' stroke-opacity='0.12'/%3E%3Ccircle cx='0' cy='80' r='30' fill='none' stroke='%234f46e5' stroke-width='1.2' stroke-opacity='0.12'/%3E%3Ccircle cx='80' cy='80' r='30' fill='none' stroke='%234f46e5' stroke-width='1.2' stroke-opacity='0.12'/%3E%3Ccircle cx='40' cy='40' r='30' fill='none' stroke='%234f46e5' stroke-width='1' stroke-opacity='0.09'/%3E%3C/svg%3E");
+  background-size: 80px 80px;
 }
 
-/* ===================================================
-   ADDITIONAL ANIMATION KEYFRAMES
-   =================================================== */
-@keyframes scroll-rtl {
+/* 7 — Moroccan tile (for dark sections) */
+.pat-moroccan {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60' viewBox='0 0 60 60'%3E%3Cg fill='none' stroke='%23ffffff' stroke-width='0.8' stroke-opacity='0.10'%3E%3Crect x='5' y='5' width='50' height='50' rx='3'/%3E%3Crect x='12' y='12' width='36' height='36' rx='2'/%3E%3Cline x1='30' y1='5' x2='30' y2='55'/%3E%3Cline x1='5' y1='30' x2='55' y2='30'/%3E%3Cline x1='5' y1='5' x2='55' y2='55'/%3E%3Cline x1='55' y1='5' x2='5' y2='55'/%3E%3C/g%3E%3C/svg%3E");
+  background-size: 60px 60px;
+}
+
+/* 8 — Checker subtle — used in Result, Theme */
+.pat-checker {
+  background-image:
+    linear-gradient(45deg, rgba(99,102,241,0.06) 25%, transparent 25%),
+    linear-gradient(-45deg, rgba(99,102,241,0.06) 25%, transparent 25%),
+    linear-gradient(45deg, transparent 75%, rgba(99,102,241,0.06) 75%),
+    linear-gradient(-45deg, transparent 75%, rgba(99,102,241,0.06) 75%);
+  background-size: 32px 32px;
+  background-position: 0 0, 0 16px, 16px -16px, -16px 0px;
+}
+
+/* ==========================================================
+   SCROLL TRACKS
+   ========================================================== */
+@keyframes scrollRTL {
   0%   { transform: translateX(0); }
   100% { transform: translateX(-50%); }
 }
-
-@keyframes scroll-ltr {
+@keyframes scrollLTR {
   0%   { transform: translateX(-50%); }
+  100% { transform: translateX(0%); }
+}
+
+/* ==========================================================
+   CHAT FAB + ANIMATIONS
+   ========================================================== */
+@keyframes chatPulse {
+  0%,100% { transform: scale(1); box-shadow: 0 4px 24px rgba(22,163,74,0.5); }
+  50%      { transform: scale(1.06); box-shadow: 0 8px 32px rgba(22,163,74,0.7); }
+}
+@keyframes ringPulse {
+  0%   { transform: scale(1); opacity: 0.5; }
+  100% { transform: scale(1.8); opacity: 0; }
+}
+.chat-fab {
+  position: fixed; bottom: 5rem; right: 1.5rem; z-index: 60;
+  display: flex; align-items: center; justify-content: center;
+  width: 3.5rem; height: 3.5rem; border-radius: 9999px;
+  background: linear-gradient(135deg,#16a34a,#15803d);
+  box-shadow: 0 4px 24px rgba(22,163,74,0.5);
+  cursor: pointer; border: none;
+  animation: chatPulse 2.5s ease-in-out infinite;
+}
+.chat-fab:hover { animation: none; transform: scale(1.12); box-shadow: 0 8px 36px rgba(22,163,74,0.65); }
+.chat-fab::before {
+  content:''; position: absolute; inset:0; border-radius:9999px;
+  background: rgba(22,163,74,0.4); animation: ringPulse 2s ease-out infinite;
+}
+
+/* ==========================================================
+   MISC
+   ========================================================== */
+@keyframes fadeSlideIn {
+  from { opacity:0; transform:translateY(14px); }
+  to   { opacity:1; transform:translateY(0); }
+}
+@keyframes securityScan {
+  0%   { top:-2px; opacity:0; }
+  5%   { opacity:1; }
+  95%  { opacity:1; }
+  100% { top:100%; opacity:0; }
+}
+@keyframes floatY {
+  0%,100% { transform: translateY(0px); }
+  50%     { transform: translateY(-8px); }
+}
+
+/* ===== FinalCTA education pattern drift ===== */
+@keyframes educationPatternDrift {
+  0%   { background-position: 0px 0px; }
+  100% { background-position: 100px 100px; }
+}
+
+/* ===== Logo scroll animation ===== */
+@keyframes logoScroll {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(calc(-1 * var(--scroll-half, 3000px))); }
+}
+
+/* ===== Testimonial scroll animations ===== */
+/* LTR: cards appear to move left→right (track moves right→left) */
+@keyframes testLTR {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(calc(-1 * var(--half, 2600px))); }
+}
+/* RTL: cards appear to move right→left (track moves left→right) */
+@keyframes testRTL {
+  0%   { transform: translateX(calc(-1 * var(--half, 2600px))); }
   100% { transform: translateX(0); }
 }
 
-@keyframes fadeSlideIn {
-  from { opacity: 0; transform: translateY(16px); }
-  to   { opacity: 1; transform: translateY(0); }
+/* ===== FinalCTA background animations ===== */
+/* Old/manual layer: drifts right+down, slightly dims */
+@keyframes oldLayerDrift {
+  0%   { background-position: 0px 0px;      opacity: 1; }
+  100% { background-position: 110px 90px;   opacity: 0.6; }
 }
-
-@keyframes chatBounce {
-  0%, 100% { transform: scale(1); }
-  50%       { transform: scale(1.08); }
+/* New/digital layer: drifts opposite direction, brightens */
+@keyframes newLayerPulse {
+  0%   { background-position: 110px 90px;   opacity: 0.7; }
+  100% { background-position: 0px 0px;      opacity: 1; }
 }
-
-@keyframes pulse-ring {
-  0%   { transform: scale(1);   opacity: 0.6; }
-  100% { transform: scale(1.7); opacity: 0;   }
-}
-
-/* RTL support for Arabic */
-[dir="rtl"] .container-xl {
-  direction: rtl;
-}
-[dir="rtl"] .font-arabic {
-  letter-spacing: 0.02em;
-}
-
-/* ===================================================
-   PARTNER LOGO SCROLL TRACKS
-   =================================================== */
-.logo-track-rtl {
-  display: flex;
-  width: max-content;
-  animation: scroll-rtl 32s linear infinite;
-}
-.logo-track-rtl:hover {
-  animation-play-state: paused;
-}
-
-.logo-track-ltr {
-  display: flex;
-  width: max-content;
-  animation: scroll-ltr 32s linear infinite;
-}
-.logo-track-ltr:hover {
-  animation-play-state: paused;
-}
-
-/* ===================================================
-   FLOATING CHAT BUTTON
-   =================================================== */
-.chat-fab {
-  position: fixed;
-  bottom: 5rem;
-  right: 1.5rem;
-  z-index: 60;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 3.5rem;
-  height: 3.5rem;
-  border-radius: 9999px;
-  background: linear-gradient(135deg, #16a34a 0%, #15803d 100%);
-  box-shadow: 0 4px 24px rgba(22,163,74,0.45), 0 2px 8px rgba(0,0,0,0.2);
-  cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
-  animation: chatBounce 3s ease-in-out infinite;
-  border: none;
-}
-.chat-fab:hover {
-  transform: scale(1.1);
-  box-shadow: 0 8px 32px rgba(22,163,74,0.55), 0 4px 12px rgba(0,0,0,0.2);
-  animation: none;
-}
-.chat-fab::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  border-radius: 9999px;
-  background: rgba(22,163,74,0.5);
-  animation: pulse-ring 2s ease-out infinite;
+/* New/digital layer: drifts opposite direction, brightens */
+@keyframes newLayerPulse {
+  0%   { background-position: 110px 90px;   opacity: 0.7; }
+  100% { background-position: 0px 0px;      opacity: 1; }
 }

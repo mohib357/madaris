@@ -159,8 +159,8 @@ export default function HeroSection() {
   return (
     <section className="relative min-h-[calc(100vh-100px)] bg-gradient-to-br from-blue-950 via-blue-900 to-indigo-900 overflow-hidden flex items-center">
       {/* Background elements */}
-      <div className="absolute inset-0 geo-pattern opacity-30" />
-      <div className="absolute inset-0 islamic-star-pattern opacity-60" />
+      <div className="absolute inset-0 pat-moroccan" style={{ opacity:1 }} />
+      <div className="absolute inset-0 pat-islamic" style={{ opacity:0.7 }} />
       <div className="absolute top-20 right-10 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl" />
       <div className="absolute bottom-10 left-10 w-72 h-72 bg-indigo-500/10 rounded-full blur-3xl" />
 
